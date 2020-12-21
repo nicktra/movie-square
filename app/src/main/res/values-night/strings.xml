@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="splash_screen">Splash Screen Movie Square</string>
+    <string name="label_title">Title</string>
+    <string name="label_release">Release Date</string>
+    <string name="label_rating">Rating</string>
+    <string name="data_title">data_title</string>
+    <string name="data_release">data_release</string>
+    <string name="data_rating">data_rating</string>
+    <string name="label_overview">Overview</string>
+    <string name="data_overview">data_overview</string>
+    <string name="label_genre">Genre</string>
+    <string name="data_genre">data_genre</string>
+    <string name="movie">Movie</string>
+    <string name="tvShow">TV Show</string>
+    <string name="share">Share</string>
+    <string name="about">About</string>
+    <string name="detail">Detail</string>
+</resources>
