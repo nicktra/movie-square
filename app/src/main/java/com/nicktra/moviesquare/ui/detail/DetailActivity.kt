@@ -41,10 +41,10 @@ class DetailActivity : AppCompatActivity() {
 
         if (movieId != null) {
             viewModel.setSelectedMovie(movieId)
-            populateMovie(viewModel.getMovie() as MovieEntity)
+            populateMovie(viewModel.getMovie())
         } else if (showId != null) {
             viewModel.setSelectedShow(showId)
-            populateShow(viewModel.getShow() as ShowEntity)
+            populateShow(viewModel.getShow())
         }
 
     }

@@ -3,10 +3,12 @@ package com.nicktra.moviesquare.ui.home
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.nicktra.moviesquare.R
 import com.nicktra.moviesquare.utils.DataDummy
 import org.junit.Before
@@ -74,5 +76,12 @@ class HomeActivityTest {
         onView(withId(R.id.tv_data_title)).check(matches(withText(dummyShow[0].title)))
         onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_data_release)).check(matches(withText(dummyShow[0].release)))
+    }
+
+    @Test
+    fun loadAbout() {
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(withText("About")).perform(click())
+        onView(withId(R.id.rellay1)).check(matches(isDisplayed()))
     }
 }

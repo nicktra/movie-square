@@ -1,26 +1,16 @@
 package com.nicktra.moviesquare.ui.tvshows
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nicktra.moviesquare.R
-import com.nicktra.moviesquare.databinding.FragmentMoviesBinding
 import com.nicktra.moviesquare.databinding.FragmentShowsBinding
-import com.nicktra.moviesquare.ui.movies.MoviesAdapter
-import com.nicktra.moviesquare.ui.movies.MoviesViewModel
-import com.nicktra.moviesquare.utils.DataDummy
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ShowsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ShowsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private lateinit var fragmentShowsBinding: FragmentShowsBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
