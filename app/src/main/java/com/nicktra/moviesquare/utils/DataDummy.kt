@@ -25,13 +25,13 @@ object DataDummy {
 
         movies.add(
                 MovieEntity(
-                        "531219",
-                        "Roald Dahl's The Witches",
-                        "In late 1967, a young orphaned boy goes to live with his loving grandma in the rural Alabama town of Demopolis. As the boy and his grandmother encounter some deceptively glamorous but thoroughly diabolical witches, she wisely whisks him away to a seaside resort. Regrettably, they arrive at precisely the same time that the world's Grand High Witch has gathered.",
-                        "${imageUrl}betExZlgK0l7CZ9CsCBVcwO1OjL.jpg",
-                        "Fantasy, Family, Adventure, Comedy, Horror",
-                        "Oct 26, 2020",
-                        "6.9"
+                        "636565",
+                        "Rose Island",
+                        "In 1968, engineer Giorgio Rosa established the independent state called \"The Isle of Roses\" off the coast of Rimini, built on a platform outside the territorial waters, with Esperanto as the official language. The Italian authorities did not take it well because the micronation was seen as an expedient to not pay taxes on the revenues obtained thanks to the arrival of numerous tourists and curious people.",
+                        "${imageUrl}yePO1PrRfrVMGqwJ3EzKhVvQXBX.jpg",
+                        "Comedy, Drama, Adventure",
+                        "Dec 09, 2020",
+                        "7.2"
                 )
         )
 

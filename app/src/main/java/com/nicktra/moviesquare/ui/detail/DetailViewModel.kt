@@ -17,9 +17,10 @@ class DetailViewModel : ViewModel() {
         this.showId = showId
     }
 
-    fun getMovie(): MovieEntity? {
-        var movie: MovieEntity? = null
-        for (movieEntity in DataDummy.generateDummyMovies()) {
+    fun getMovie(): MovieEntity {
+        lateinit var movie: MovieEntity
+        val moviesEntities = DataDummy.generateDummyMovies()
+        for (movieEntity in moviesEntities) {
             if (movieEntity.movieId == movieId) {
                 movie = movieEntity
             }
@@ -27,9 +28,10 @@ class DetailViewModel : ViewModel() {
         return movie
     }
 
-    fun getShow(): ShowEntity? {
-        var show: ShowEntity? = null
-        for (showEntity in DataDummy.generateDummyShows()) {
+    fun getShow(): ShowEntity {
+        lateinit var show: ShowEntity
+        val showsEntities = DataDummy.generateDummyShows()
+        for (showEntity in showsEntities) {
             if (showEntity.showId == showId) {
                 show = showEntity
             }

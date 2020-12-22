@@ -2,12 +2,7 @@ package com.nicktra.moviesquare.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -17,8 +12,6 @@ import com.nicktra.moviesquare.data.MovieEntity
 import com.nicktra.moviesquare.data.ShowEntity
 import com.nicktra.moviesquare.databinding.ActivityDetailBinding
 import com.nicktra.moviesquare.databinding.ContentDetailBinding
-import com.nicktra.moviesquare.utils.DataDummy
-import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -31,16 +24,11 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*setContentView(R.layout.activity_detail)
-        setSupportActionBar(toolbar)
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)*/
 
         val activityDetailBinding = ActivityDetailBinding.inflate(layoutInflater)
         detailContentBinding = activityDetailBinding.detailContent
 
         setContentView(activityDetailBinding.root)
-
 
         supportActionBar?.title = getString(R.string.detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ShowEntity(
-        var showId: String?,
+        var showId: String,
         var title: String?,
         var overview: String?,
         var image: String?,

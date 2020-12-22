@@ -11,8 +11,19 @@
 
     <color name="yellow_primary">#e9eaa2</color>
     <color name="yellow_primary_light">#ffffd4</color>
-    <color name="yellow_primary_dark">#b6b873</color>
+    <color name="yellow_primary_dark">#93955F</color>
     <color name="red_secondary">#ff3d54</color>
     <color name="red_secondary_light">#ff7680</color>
     <color name="red_secondary_dark">#c5002b</color>
+
+    <color name="address">#F0F5FF</color>
+    <color name="followers">#0D5D98</color>
+    <color name="headings">#3797CF</color>
+    <color name="solidCircle">#AAFFFFFF</color>
+    <color name="circleBorder">#50FFFFFF</color>
+    <color name="gradEnd">#C0C364</color>
+    <color name="gradStart">#AF9308</color>
+    <color name="grey">#E5E5E5</color>
+
+    <color name="windowBackground">#2D2814</color>
 </resources>
