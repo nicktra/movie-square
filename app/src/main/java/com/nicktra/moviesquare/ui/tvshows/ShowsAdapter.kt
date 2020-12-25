@@ -7,12 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nicktra.moviesquare.R
-import com.nicktra.moviesquare.data.MovieEntity
 import com.nicktra.moviesquare.data.ShowEntity
-import com.nicktra.moviesquare.databinding.ItemsMovieBinding
 import com.nicktra.moviesquare.databinding.ItemsShowBinding
 import com.nicktra.moviesquare.ui.detail.DetailActivity
-import com.nicktra.moviesquare.ui.movies.MoviesAdapter
 
 class ShowsAdapter : RecyclerView.Adapter<ShowsAdapter.ShowViewHolder>() {
     private var listShows = ArrayList<ShowEntity>()
@@ -39,8 +36,9 @@ class ShowsAdapter : RecyclerView.Adapter<ShowsAdapter.ShowViewHolder>() {
     class ShowViewHolder(private val binding: ItemsShowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(show: ShowEntity) {
             with(binding) {
-                tvItemTitle.text = show.title
-                tvItemRelease.text = show.release
+                val year = show.release?.substring(0,4)
+                val titleYear = show.title
+                tvItemTitle.text = itemView.context.getString(R.string.item_title, titleYear, year)
                 tvItemRating.text = show.rating
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
@@ -51,7 +49,7 @@ class ShowsAdapter : RecyclerView.Adapter<ShowsAdapter.ShowViewHolder>() {
                         .load(show.image)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
-                        .into(imgPoster)
+                        .into(ivItemPoster)
             }
         }
     }

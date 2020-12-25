@@ -38,4 +38,6 @@
     <string name="profile_name_twitter">twitter.com/koniksaputra</string>
     <string name="profile_label_facebook">Facebook</string>
     <string name="profile_name_facebook">facebook.com/koniksaputra</string>
+    <string name="img_poster">Image Poster</string>
+    <string name="item_title"> %1$s (%2$s)</string>
 </resources>

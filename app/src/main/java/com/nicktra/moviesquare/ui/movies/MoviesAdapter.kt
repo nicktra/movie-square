@@ -36,8 +36,9 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
     class MovieViewHolder(private val binding: ItemsMovieBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieEntity) {
             with(binding) {
-                tvItemTitle.text = movie.title
-                tvItemRelease.text = movie.release
+                val year = movie.release?.substring(0,4)
+                val titleYear = movie.title
+                tvItemTitle.text = itemView.context.getString(R.string.item_title, titleYear, year)
                 tvItemRating.text = movie.rating
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
@@ -48,7 +49,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
                         .load(movie.image)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
-                        .into(imgPoster)
+                        .into(ivItemPoster)
             }
         }
     }

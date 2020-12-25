@@ -53,14 +53,12 @@ class DetailActivity : AppCompatActivity() {
         val movieTitle = movieEntity.title
         val movieRelease = movieEntity.release
         val movieRating = movieEntity.rating
-        val movieGenre = movieEntity.genre
         val movieOverview = movieEntity.overview
         val movieImage = movieEntity.image
 
         detailContentBinding.tvDataTitle.text = movieTitle
         detailContentBinding.tvDataRelease.text = movieRelease
         detailContentBinding.tvDataRating.text = movieRating
-        detailContentBinding.tvDataGenre.text = movieGenre
         detailContentBinding.tvDataOverview.text = movieOverview
 
         Glide.with(this)
@@ -86,14 +84,12 @@ class DetailActivity : AppCompatActivity() {
         val showTitle = showEntity.title
         val showRelease = showEntity.release
         val showRating = showEntity.rating
-        val showGenre = showEntity.genre
         val showOverview = showEntity.overview
         val showImage = showEntity.image
 
         detailContentBinding.tvDataTitle.text = showTitle
         detailContentBinding.tvDataRelease.text = showRelease
         detailContentBinding.tvDataRating.text = showRating
-        detailContentBinding.tvDataGenre.text = showGenre
         detailContentBinding.tvDataOverview.text = showOverview
 
         Glide.with(this)

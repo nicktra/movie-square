@@ -1,12 +1,13 @@
 package com.nicktra.moviesquare.ui.movies
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.nicktra.moviesquare.databinding.FragmentMoviesBinding
 
 class MoviesFragment : Fragment() {
@@ -29,7 +30,10 @@ class MoviesFragment : Fragment() {
             moviesAdapter.setMovies(movies)
 
             with(fragmentMoviesBinding.rvMovie) {
-                layoutManager = LinearLayoutManager(context)
+                val orientation = this@MoviesFragment.resources.configuration.orientation
+                val spanCount = if (orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 3
+
+                layoutManager = GridLayoutManager(context, spanCount)
                 setHasFixedSize(true)
                 adapter = moviesAdapter
             }

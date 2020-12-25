@@ -16,4 +16,6 @@
     <string name="share">Share</string>
     <string name="about">About</string>
     <string name="detail">Detail</string>
+    <string name="img_poster">Image Poster</string>
+    <string name="item_title"> %1$s (%2$s)</string>
 </resources>

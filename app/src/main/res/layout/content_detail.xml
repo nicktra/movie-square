@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/tv_label_genre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,14 +142,12 @@
                 android:layout_below="@id/tv_label_genre"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp"
-                tools:text="@string/data_genre"/>
+                tools:text="@string/data_genre"/>-->
 
             <TextView
                 android:id="@+id/tv_label_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_data_genre"
-                android:layout_marginTop="10dp"
                 android:text="@string/label_overview"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp" />

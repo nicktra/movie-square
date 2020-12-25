@@ -9,7 +9,6 @@ data class MovieEntity(
         var title: String?,
         var overview: String?,
         var image: String?,
-        var genre: String?,
         var release: String?,
         var rating: String?
 ) : Parcelable
