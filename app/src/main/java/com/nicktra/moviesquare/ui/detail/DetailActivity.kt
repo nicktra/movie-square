@@ -12,6 +12,7 @@ import com.nicktra.moviesquare.data.MovieEntity
 import com.nicktra.moviesquare.data.ShowEntity
 import com.nicktra.moviesquare.databinding.ActivityDetailBinding
 import com.nicktra.moviesquare.databinding.ContentDetailBinding
+import com.nicktra.moviesquare.viewmodel.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
 
@@ -33,7 +34,8 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         val extras = intent.extras
         val movieId = extras?.getString(EXTRA_MOVIE)

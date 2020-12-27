@@ -1,0 +1,84 @@
+{
+  "movies": [
+    {
+      "movieId": "590995",
+      "title": "The Craft: Legacy",
+      "overview": "An eclectic foursome of aspiring teenage witches get more than they bargained for as they lean into their newfound powers.",
+      "image": "/lhMIra0pqWNuD6CIXoTmGwZ0EBS.jpg",
+      "release": "2020-10-28",
+      "rating": "6.3"
+    },
+    {
+      "movieId": "636565",
+      "title": "Rose Island",
+      "overview": "In 1968, engineer Giorgio Rosa established the independent state called \"The Isle of Roses\" off the coast of Rimini, built on a platform outside the territorial waters, with Esperanto as the official language. The Italian authorities did not take it well because the micronation was seen as an expedient to not pay taxes on the revenues obtained thanks to the arrival of numerous tourists and curious people.",
+      "image": "/yePO1PrRfrVMGqwJ3EzKhVvQXBX.jpg",
+      "release": "2020-12-09",
+      "rating": "7.2"
+    },
+    {
+      "movieId": "646593",
+      "title": "Wander",
+      "overview": "After getting hired to probe a suspicious death in the small town of Wander, a mentally unstable private investigator becomes convinced the case is linked to the same 'conspiracy cover up' that caused the death of his daughter.",
+      "image": "/2AwPvNHphpZBJDqjZKVuMAbvS0v.jpg",
+      "release": "2020-12-09",
+      "rating": "5.6"
+    },
+    {
+      "movieId": "590706",
+      "title": "Jiu Jitsu",
+      "overview": "Every six years, an ancient order of jiu-jitsu fighters joins forces to battle a vicious race of alien invaders. But when a celebrated war hero goes down in defeat, the fate of the planet and mankind hangs in the balance.",
+      "image": "/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg",
+      "release": "2020-11-20",
+      "rating": "5.7"
+    },
+    {
+      "movieId": "765123",
+      "title": "Christmas Crossfire",
+      "overview": "A man foils an attempted murder, then flees the crew of would-be killers along with their intended target as a woman he's just met tries to find him.",
+      "image": "/ajKpYK7XdzIYjy9Uy8nkgRboKyv.jpg",
+      "release": "2020-12-04",
+      "rating": "5.2"
+    },
+    {
+      "movieId": "294963",
+      "title": "Bone Tomahawk",
+      "overview": "During a shootout in a saloon, Sheriff Hunt injures a suspicious stranger. One of the villagers takes care of him in prison. One day they both disappear – only the spear of a cannibal tribe is found. Hunt and a few of his men go in search of the prisoner and his nurse.",
+      "image": "/ifdPXLsGmdspNOonv3DwU5pbyVC.jpg",
+      "release": "2015-10-23",
+      "rating": "6.8"
+    },
+    {
+      "movieId": "602211",
+      "title": "Fatman",
+      "overview": "A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.",
+      "image": "/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg",
+      "release": "2020-11-13",
+      "rating": "5.9"
+    },
+    {
+      "movieId": "553604",
+      "title": "Honest Thief",
+      "overview": "A bank robber tries to turn himself in because he's falling in love and wants to live an honest life...but when he realizes the Feds are more corrupt than him, he must fight back to clear his name.",
+      "image": "/zeD4PabP6099gpE0STWJrJrCBCs.jpg",
+      "release": "2020-09-03",
+      "rating": "7.2"
+    },
+    {
+      "movieId": "577922",
+      "title": "Tenet",
+      "overview": "Armed with only one word - Tenet - and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+      "image": "/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
+      "release": "2020-08-22",
+      "rating": "7.4"
+    },
+    {
+      "movieId": "662546",
+      "title": "Godmothered",
+      "overview": "A young and unskilled fairy godmother that ventures out on her own to prove her worth by tracking down a young girl whose request for help was ignored. What she discovers is that the girl has now become a grown woman in need of something very different than a \"prince charming.\"",
+      "image": "/ir8Qqi90mENhH7CDxEpdeCcm6UL.jpg",
+      "release": "2020-12-04",
+      "rating": "7.2"
+    }
+  ]
+}

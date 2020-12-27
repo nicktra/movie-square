@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nicktra.moviesquare.databinding.FragmentMoviesBinding
+import com.nicktra.moviesquare.viewmodel.ViewModelFactory
 
 class MoviesFragment : Fragment() {
 
@@ -20,10 +21,13 @@ class MoviesFragment : Fragment() {
         return fragmentMoviesBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        showLoading(true)
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MoviesViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[MoviesViewModel::class.java]
+
             val movies = viewModel.getMovies()
 
             val moviesAdapter = MoviesAdapter()
@@ -36,7 +40,17 @@ class MoviesFragment : Fragment() {
                 layoutManager = GridLayoutManager(context, spanCount)
                 setHasFixedSize(true)
                 adapter = moviesAdapter
+
+                showLoading(false)
             }
+        }
+    }
+
+    private fun showLoading(state: Boolean) {
+        if (state) {
+            fragmentMoviesBinding.progressBar.visibility = View.VISIBLE
+        } else {
+            fragmentMoviesBinding.progressBar.visibility = View.GONE
         }
     }
 }
