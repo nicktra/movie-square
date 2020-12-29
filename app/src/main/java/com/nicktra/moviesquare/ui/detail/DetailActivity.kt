@@ -2,6 +2,7 @@ package com.nicktra.moviesquare.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -42,11 +43,27 @@ class DetailActivity : AppCompatActivity() {
         val showId = extras?.getString(EXTRA_SHOW)
 
         if (movieId != null) {
+            activityDetailBinding.progressBar.visibility = View.VISIBLE
+            activityDetailBinding.content.visibility = View.INVISIBLE
+
             viewModel.setSelectedMovie(movieId)
-            populateMovie(viewModel.getMovie())
+            viewModel.getMovie().observe(this, { movie ->
+                activityDetailBinding.progressBar.visibility = View.GONE
+                activityDetailBinding.content.visibility = View.VISIBLE
+                populateMovie(movie)
+            })
+            /*populateMovie(viewModel.getMovie())*/
         } else if (showId != null) {
+            activityDetailBinding.progressBar.visibility = View.VISIBLE
+            activityDetailBinding.content.visibility = View.INVISIBLE
+
             viewModel.setSelectedShow(showId)
-            populateShow(viewModel.getShow())
+            viewModel.getShow().observe(this, { show ->
+                activityDetailBinding.progressBar.visibility = View.GONE
+                activityDetailBinding.content.visibility = View.VISIBLE
+                populateShow(show)
+            })
+            /*populateShow(viewModel.getShow())*/
         }
 
     }

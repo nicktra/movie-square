@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nicktra.moviesquare.databinding.FragmentMoviesBinding
@@ -28,10 +29,14 @@ class MoviesFragment : Fragment() {
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[MoviesViewModel::class.java]
 
-            val movies = viewModel.getMovies()
-
             val moviesAdapter = MoviesAdapter()
-            moviesAdapter.setMovies(movies)
+
+            showLoading(true)
+            viewModel.getMovies().observe(viewLifecycleOwner, Observer { movies ->
+                showLoading(false)
+                moviesAdapter.setMovies(movies)
+                moviesAdapter.notifyDataSetChanged()
+            })
 
             with(fragmentMoviesBinding.rvMovie) {
                 val orientation = this@MoviesFragment.resources.configuration.orientation
@@ -40,8 +45,6 @@ class MoviesFragment : Fragment() {
                 layoutManager = GridLayoutManager(context, spanCount)
                 setHasFixedSize(true)
                 adapter = moviesAdapter
-
-                showLoading(false)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.nicktra.moviesquare.ui.detail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.nicktra.moviesquare.data.MovieEntity
 import com.nicktra.moviesquare.data.ShowEntity
@@ -18,7 +19,7 @@ class DetailViewModel(private val appRepository: AppRepository) : ViewModel() {
         this.showId = showId
     }
 
-    fun getMovie(): MovieEntity = appRepository.getDetailMovie(movieId)
+    fun getMovie(): LiveData<MovieEntity> = appRepository.getDetailMovie(movieId)
 
-    fun getShow(): ShowEntity = appRepository.getDetailShow(showId)
+    fun getShow(): LiveData<ShowEntity> = appRepository.getDetailShow(showId)
 }

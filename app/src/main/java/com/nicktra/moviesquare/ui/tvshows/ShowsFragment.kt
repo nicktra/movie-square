@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nicktra.moviesquare.databinding.FragmentShowsBinding
@@ -23,15 +24,19 @@ class ShowsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        showLoading(true)
+
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[ShowsViewModel::class.java]
 
-            val shows = viewModel.getShows()
-
             val showsAdapter = ShowsAdapter()
-            showsAdapter.setShows(shows)
+
+            showLoading(true)
+            viewModel.getShows().observe(viewLifecycleOwner, Observer { shows ->
+                showLoading(false)
+                showsAdapter.setShows(shows)
+                showsAdapter.notifyDataSetChanged()
+            })
 
             with(fragmentShowsBinding.rvShow) {
                 val orientation = this@ShowsFragment.resources.configuration.orientation
@@ -40,8 +45,6 @@ class ShowsFragment : Fragment() {
                 layoutManager = GridLayoutManager(context, spanCount)
                 setHasFixedSize(true)
                 adapter = showsAdapter
-
-                showLoading(false)
             }
         }
     }
