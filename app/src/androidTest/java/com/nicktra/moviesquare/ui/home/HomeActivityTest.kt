@@ -48,13 +48,16 @@ class HomeActivityTest {
 
     @Test
     fun loadMovies() {
+        Thread.sleep(2000)
         onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size))
     }
 
     @Test
     fun loadDetailMovie() {
+        Thread.sleep(2000)
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        Thread.sleep(2000)
         onView(withId(R.id.tv_data_title)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_data_title)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))
@@ -63,6 +66,7 @@ class HomeActivityTest {
 
     @Test
     fun loadShows() {
+        Thread.sleep(2000)
         onView(withText("TV SHOW")).perform(click())
         onView(withId(R.id.rv_show)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_show)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyShow.size))
@@ -71,7 +75,9 @@ class HomeActivityTest {
     @Test
     fun loadDetailShow() {
         onView(withText("TV SHOW")).perform(click())
+        Thread.sleep(2000)
         onView(withId(R.id.rv_show)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        Thread.sleep(2000)
         onView(withId(R.id.tv_data_title)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_data_title)).check(matches(withText(dummyShow[0].title)))
         onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))
