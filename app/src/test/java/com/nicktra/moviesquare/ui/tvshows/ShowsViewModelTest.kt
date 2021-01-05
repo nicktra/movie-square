@@ -3,7 +3,6 @@ package com.nicktra.moviesquare.ui.tvshows
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.nicktra.moviesquare.data.ShowEntity
 import com.nicktra.moviesquare.data.source.AppRepository
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.ResultsShowItem
 import com.nicktra.moviesquare.utils.DataDummy
@@ -14,7 +13,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner

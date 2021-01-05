@@ -125,12 +125,12 @@ object DataDummy {
 
         shows.add(
                 ResultsShowItem(
-                        44217,
-                        "Vikings",
-                        "The adventures of Ragnar Lothbrok, the greatest hero of his age. The series tells the sagas of Ragnar's band of Viking brothers and his family, as he rises to become King of the Viking tribes. As well as being a fearless warrior, Ragnar embodies the Norse traditions of devotion to the gods. Legend has it that he was a direct descendant of Odin, the god of war and warriors.",
-                        "${imageUrl}bQLrHIRNEkE3PdIWQrZHynQZazu.jpg",
-                        "2013-03-03",
-                        8.0
+                    77169,
+                        "Cobra Kai",
+                        "This Karate Kid sequel series picks up 30 years after the events of the 1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt for redemption by reopening the infamous Cobra Kai karate dojo. This reignites his old rivalry with the successful Daniel LaRusso, who has been working to maintain the balance in his life without mentor Mr. Miyagi.",
+                        "${imageUrl}obLBdhLxheKg8Li1qO11r2SwmYO.jpg",
+                        "2018-05-02",
+                        8.1
                 )
         )
         shows.add(
@@ -341,12 +341,12 @@ object DataDummy {
 
         shows.add(
                 ResultsShowItem(
-                        44217,
-                        "Vikings",
-                        "The adventures of Ragnar Lothbrok, the greatest hero of his age. The series tells the sagas of Ragnar's band of Viking brothers and his family, as he rises to become King of the Viking tribes. As well as being a fearless warrior, Ragnar embodies the Norse traditions of devotion to the gods. Legend has it that he was a direct descendant of Odin, the god of war and warriors.",
-                        "${imageUrl}bQLrHIRNEkE3PdIWQrZHynQZazu.jpg",
-                        "2013-03-03",
-                        8.0
+                    77169,
+                        "Cobra Kai",
+                        "This Karate Kid sequel series picks up 30 years after the events of the 1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt for redemption by reopening the infamous Cobra Kai karate dojo. This reignites his old rivalry with the successful Daniel LaRusso, who has been working to maintain the balance in his life without mentor Mr. Miyagi.",
+                        "${imageUrl}obLBdhLxheKg8Li1qO11r2SwmYO.jpg",
+                        "2018-05-02",
+                        8.1
                 )
         )
         shows.add(
@@ -520,10 +520,10 @@ object DataDummy {
     }
 
     fun generateRemoteDummyShowsDetail(kShowId: Int): DetailShowResponse {
-        val showId = arrayOf(44217, 71712, 1416, 63174, 71789, 62286, 69050, 68507, 87739, 1399)
+        val showId = arrayOf(77169, 71712, 1416, 63174, 71789, 62286, 69050, 68507, 87739, 1399)
 
         val showName = arrayOf(
-                "Vikings",
+                "Cobra Kai",
                 "The Good Doctor",
                 "Grey's Anatomy",
                 "Lucifer",
@@ -536,7 +536,7 @@ object DataDummy {
         )
 
         val showOverview = arrayOf(
-                "The adventures of Ragnar Lothbrok, the greatest hero of his age. The series tells the sagas of Ragnar's band of Viking brothers and his family, as he rises to become King of the Viking tribes. As well as being a fearless warrior, Ragnar embodies the Norse traditions of devotion to the gods. Legend has it that he was a direct descendant of Odin, the god of war and warriors.",
+                "This Karate Kid sequel series picks up 30 years after the events of the 1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt for redemption by reopening the infamous Cobra Kai karate dojo. This reignites his old rivalry with the successful Daniel LaRusso, who has been working to maintain the balance in his life without mentor Mr. Miyagi.",
                 "A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives?",
                 "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
                 "Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandoned his throne and retired to Los Angeles, where he has teamed up with LAPD detective Chloe Decker to take down criminals. But the longer he's away from the underworld, the greater the threat that the worst of humanity could escape.",
@@ -549,7 +549,7 @@ object DataDummy {
         )
 
         val showPosterPath = arrayOf(
-                "${imageUrl}bQLrHIRNEkE3PdIWQrZHynQZazu.jpg",
+                "${imageUrl}obLBdhLxheKg8Li1qO11r2SwmYO.jpg",
                 "${imageUrl}6tfT03sGp9k4c0J3dypjrI8TSAI.jpg",
                 "${imageUrl}clnyhPqj1SNgpAdeSS6a6fwE6Bo.jpg",
                 "${imageUrl}4EYPN5mVIhKLfxGruy7Dy41dTVn.jpg",
@@ -563,7 +563,7 @@ object DataDummy {
         )
 
         val showFirstAirDate = arrayOf(
-                "2013-03-03",
+                "2018-05-02",
                 "2017-09-25",
                 "2005-03-27",
                 "2016-01-25",
@@ -575,7 +575,7 @@ object DataDummy {
                 "2011-04-17"
         )
 
-        val showVoteAverage = doubleArrayOf(8.0, 8.6, 8.1, 8.5, 7.8, 7.5, 8.6, 8.1, 8.7, 8.3)
+        val showVoteAverage = doubleArrayOf(8.1, 8.6, 8.1, 8.5, 7.8, 7.5, 8.6, 8.1, 8.7, 8.3)
 
 
         lateinit var show: DetailShowResponse

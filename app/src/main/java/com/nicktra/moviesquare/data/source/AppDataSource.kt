@@ -1,8 +1,6 @@
 package com.nicktra.moviesquare.data.source
 
 import androidx.lifecycle.LiveData
-import com.nicktra.moviesquare.data.MovieEntity
-import com.nicktra.moviesquare.data.ShowEntity
 import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
 import com.nicktra.moviesquare.data.source.remote.response.movie.ResultsMovieItem
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse

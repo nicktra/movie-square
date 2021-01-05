@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nicktra.moviesquare.R
-import com.nicktra.moviesquare.data.ShowEntity
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.ResultsShowItem
 import com.nicktra.moviesquare.databinding.ItemsShowBinding
 import com.nicktra.moviesquare.ui.detail.DetailActivity

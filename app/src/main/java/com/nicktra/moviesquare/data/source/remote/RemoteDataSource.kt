@@ -1,19 +1,15 @@
 package com.nicktra.moviesquare.data.source.remote
 
-import android.os.Handler
 import android.util.Log
 import com.nicktra.moviesquare.BuildConfig
 import com.nicktra.moviesquare.data.source.remote.api.ApiConfig
-import com.nicktra.moviesquare.data.source.remote.api.ApiService
 import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
 import com.nicktra.moviesquare.data.source.remote.response.movie.DiscoverMovieResponse
-import com.nicktra.moviesquare.data.source.remote.response.movie.MovieResponse
 import com.nicktra.moviesquare.data.source.remote.response.movie.ResultsMovieItem
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.DiscoverShowResponse
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.ResultsShowItem
-import com.nicktra.moviesquare.data.source.remote.response.tvshow.ShowResponse
-import com.nicktra.moviesquare.utils.JsonHelper
+import com.nicktra.moviesquare.utils.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +32,8 @@ class RemoteDataSource {
     }
 
     fun getAllMovies(callback: LoadMoviesCallback) {
+        EspressoIdlingResource.increment()
+
         service.getAllMovies(API_KEY).enqueue(object : Callback<DiscoverMovieResponse> {
             override fun onResponse(
                     call: Call<DiscoverMovieResponse>,
@@ -45,6 +43,8 @@ class RemoteDataSource {
                     val responseBody = response.body()
                     val data = responseBody?.results
                     data?.let { callback.onAllMoviesReceived(it) }
+
+                    EspressoIdlingResource.decrement()
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
@@ -57,6 +57,8 @@ class RemoteDataSource {
     }
 
     fun getAllShows(callback: LoadShowsCallback) {
+        EspressoIdlingResource.increment()
+
         service.getAllShows(API_KEY).enqueue(object : Callback<DiscoverShowResponse> {
             override fun onResponse(
                     call: Call<DiscoverShowResponse>,
@@ -66,6 +68,8 @@ class RemoteDataSource {
                     val responseBody = response.body()
                     val data = responseBody?.results
                     data?.let { callback.onAllShowsReceived(it) }
+
+                    EspressoIdlingResource.decrement()
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
@@ -79,6 +83,8 @@ class RemoteDataSource {
 
 
     fun getMovieDetails(movieId: Int, callback: LoadDetailMovieCallback) {
+        EspressoIdlingResource.increment()
+
         service.getDetailMovies(movieId, API_KEY).enqueue(object : Callback<DetailMovieResponse> {
             override fun onResponse(
                     call: Call<DetailMovieResponse>,
@@ -87,6 +93,8 @@ class RemoteDataSource {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     responseBody?.let { callback.onDetailMovieReceived(it) }
+
+                    EspressoIdlingResource.decrement()
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
@@ -99,6 +107,8 @@ class RemoteDataSource {
     }
 
     fun getShowDetails(showId: Int, callback: LoadDetailShowCallback) {
+        EspressoIdlingResource.increment()
+
         service.getDetailShow(showId, API_KEY)
                 .enqueue(object : Callback<DetailShowResponse> {
                     override fun onResponse(
@@ -108,6 +118,8 @@ class RemoteDataSource {
                         if (response.isSuccessful) {
                             val responseBody = response.body()
                             responseBody?.let { callback.onDetailShowReceived(it) }
+
+                            EspressoIdlingResource.decrement()
                         } else {
                             Log.e(TAG, "onFailure: ${response.message()}")
                         }

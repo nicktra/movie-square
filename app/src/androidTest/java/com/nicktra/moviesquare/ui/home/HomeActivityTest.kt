@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -11,6 +12,8 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.nicktra.moviesquare.R
 import com.nicktra.moviesquare.utils.DataDummy
+import com.nicktra.moviesquare.utils.EspressoIdlingResource
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
@@ -36,6 +39,10 @@ class HomeActivityTest {
     * Memberi tindakan klik pada data pertama di rv_show
     * Memastikan TextView untuk title tampil sesuai dengan yang diharapkan
     * Memastikan TextView untuk release tampil sesuai dengan yang diharapkan
+    *
+    * 5. loadAbout()
+    * Klik ActionBar lalu Klik teks About
+    * Memastikan tampilan About dengan id rellay1 dalam keadaan tampil
     * */
 
     private val dummyMovie = DataDummy.generateDummyMovies()
@@ -44,20 +51,23 @@ class HomeActivityTest {
     @Before
     fun setup(){
         ActivityScenario.launch(HomeActivity::class.java)
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.espressoTestIdlingResource)
+    }
+
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.espressoTestIdlingResource)
     }
 
     @Test
     fun loadMovies() {
-        Thread.sleep(2000)
         onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size))
     }
 
     @Test
     fun loadDetailMovie() {
-        Thread.sleep(2000)
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        Thread.sleep(2000)
         onView(withId(R.id.tv_data_title)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_data_title)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))
@@ -66,7 +76,6 @@ class HomeActivityTest {
 
     @Test
     fun loadShows() {
-        Thread.sleep(2000)
         onView(withText("TV SHOW")).perform(click())
         onView(withId(R.id.rv_show)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_show)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyShow.size))
@@ -75,9 +84,7 @@ class HomeActivityTest {
     @Test
     fun loadDetailShow() {
         onView(withText("TV SHOW")).perform(click())
-        Thread.sleep(2000)
         onView(withId(R.id.rv_show)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        Thread.sleep(2000)
         onView(withId(R.id.tv_data_title)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_data_title)).check(matches(withText(dummyShow[0].name)))
         onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))

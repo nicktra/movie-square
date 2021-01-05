@@ -3,17 +3,15 @@ package com.nicktra.moviesquare.ui.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.nicktra.moviesquare.data.MovieEntity
-import com.nicktra.moviesquare.data.ShowEntity
 import com.nicktra.moviesquare.data.source.AppRepository
 import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
 import com.nicktra.moviesquare.utils.DataDummy
-import org.junit.Test
-
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
@@ -25,7 +23,7 @@ class DetailViewModelTest {
 
     private lateinit var viewModel: DetailViewModel
     private val dummyMovie = DataDummy.generateRemoteDummyMoviesDetail(464052)
-    private val dummyShow = DataDummy.generateRemoteDummyShowsDetail(44217)
+    private val dummyShow = DataDummy.generateRemoteDummyShowsDetail(77169)
     private val movieId = dummyMovie.id
     private val showId = dummyShow.id
 
