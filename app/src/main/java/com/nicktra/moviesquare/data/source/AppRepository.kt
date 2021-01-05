@@ -5,7 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import com.nicktra.moviesquare.data.MovieEntity
 import com.nicktra.moviesquare.data.ShowEntity
 import com.nicktra.moviesquare.data.source.remote.RemoteDataSource
+import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
 import com.nicktra.moviesquare.data.source.remote.response.movie.MovieResponse
+import com.nicktra.moviesquare.data.source.remote.response.movie.ResultsMovieItem
+import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
+import com.nicktra.moviesquare.data.source.remote.response.tvshow.ResultsShowItem
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.ShowResponse
 
 class AppRepository private constructor(private val remoteDataSource: RemoteDataSource) : AppDataSource {
@@ -19,89 +23,43 @@ class AppRepository private constructor(private val remoteDataSource: RemoteData
                 }
     }
 
-    override fun getAllMovies(): LiveData<List<MovieEntity>> {
-        val movieResults = MutableLiveData<List<MovieEntity>>()
+    override fun getAllMovies(): LiveData<List<ResultsMovieItem>> {
+        val movieResults = MutableLiveData<List<ResultsMovieItem>>()
         remoteDataSource.getAllMovies(object : RemoteDataSource.LoadMoviesCallback {
-            override fun onAllMoviesReceived(movieResponses: List<MovieResponse>) {
-                val movieList = ArrayList<MovieEntity>()
-                for (response in movieResponses) {
-                    val movie = MovieEntity(response.movieId,
-                            response.title,
-                            response.overview,
-                            response.image,
-                            response.release,
-                            response.rating)
-                    movieList.add(movie)
-                }
-                movieResults.postValue(movieList)
+            override fun onAllMoviesReceived(movieResponses: List<ResultsMovieItem>) {
+                movieResults.postValue(movieResponses)
             }
         })
-
         return movieResults
     }
 
-    override fun getAllShows(): LiveData<List<ShowEntity>> {
-        val showResults = MutableLiveData<List<ShowEntity>>()
+    override fun getAllShows(): LiveData<List<ResultsShowItem>> {
+        val showResults = MutableLiveData<List<ResultsShowItem>>()
         remoteDataSource.getAllShows(object : RemoteDataSource.LoadShowsCallback {
-            override fun onAllShowsReceived(showResponses: List<ShowResponse>) {
-                val showList = ArrayList<ShowEntity>()
-                for (response in showResponses) {
-                    val show = ShowEntity(response.showId,
-                            response.title,
-                            response.overview,
-                            response.image,
-                            response.release,
-                            response.rating)
-                    showList.add(show)
-                }
-                showResults.postValue(showList)
+            override fun onAllShowsReceived(showResponses: List<ResultsShowItem>) {
+                showResults.postValue(showResponses)
             }
         })
-
         return showResults
     }
 
-    override fun getDetailMovie(movieId: String): LiveData<MovieEntity> {
-        val movieResults = MutableLiveData<MovieEntity>()
-        remoteDataSource.getAllMovies(object : RemoteDataSource.LoadMoviesCallback {
-            override fun onAllMoviesReceived(movieResponses: List<MovieResponse>) {
-                lateinit var movie: MovieEntity
-                for (response in movieResponses) {
-                    if (response.movieId == movieId) {
-                        movie = MovieEntity(response.movieId,
-                                response.title,
-                                response.overview,
-                                response.image,
-                                response.release,
-                                response.rating)
-                    }
-                }
-                movieResults.postValue(movie)
+    override fun getDetailMovie(movieId: Int): LiveData<DetailMovieResponse> {
+        val movieDetails = MutableLiveData<DetailMovieResponse>()
+        remoteDataSource.getMovieDetails(movieId, object : RemoteDataSource.LoadDetailMovieCallback {
+            override fun onDetailMovieReceived(detailMovieResponses: DetailMovieResponse) {
+                movieDetails.postValue(detailMovieResponses)
             }
         })
-
-        return movieResults
+        return movieDetails
     }
 
-    override fun getDetailShow(showId: String): LiveData<ShowEntity> {
-        val showResults = MutableLiveData<ShowEntity>()
-        remoteDataSource.getAllShows(object : RemoteDataSource.LoadShowsCallback {
-            override fun onAllShowsReceived(showResponses: List<ShowResponse>) {
-                lateinit var show: ShowEntity
-                for (response in showResponses) {
-                    if (response.showId == showId) {
-                        show = ShowEntity(response.showId,
-                                response.title,
-                                response.overview,
-                                response.image,
-                                response.release,
-                                response.rating)
-                    }
-                }
-                showResults.postValue(show)
+    override fun getDetailShow(showId: Int): LiveData<DetailShowResponse> {
+        val showDetails = MutableLiveData<DetailShowResponse>()
+        remoteDataSource.getShowDetails(showId, object : RemoteDataSource.LoadDetailShowCallback {
+            override fun onDetailShowReceived(detailShowResponses: DetailShowResponse) {
+                showDetails.postValue(detailShowResponses)
             }
         })
-
-        return showResults
+        return showDetails
     }
 }

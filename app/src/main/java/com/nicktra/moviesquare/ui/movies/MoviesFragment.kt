@@ -16,7 +16,7 @@ class MoviesFragment : Fragment() {
 
     private lateinit var fragmentMoviesBinding: FragmentMoviesBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         fragmentMoviesBinding = FragmentMoviesBinding.inflate(layoutInflater, container, false)
         return fragmentMoviesBinding.root
@@ -32,7 +32,7 @@ class MoviesFragment : Fragment() {
             val moviesAdapter = MoviesAdapter()
 
             showLoading(true)
-            viewModel.getMovies().observe(viewLifecycleOwner, Observer { movies ->
+            viewModel.getAllMovies().observe(viewLifecycleOwner, { movies ->
                 showLoading(false)
                 moviesAdapter.setMovies(movies)
                 moviesAdapter.notifyDataSetChanged()

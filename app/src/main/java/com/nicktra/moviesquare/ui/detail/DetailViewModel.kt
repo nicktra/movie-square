@@ -2,24 +2,24 @@ package com.nicktra.moviesquare.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.nicktra.moviesquare.data.MovieEntity
-import com.nicktra.moviesquare.data.ShowEntity
 import com.nicktra.moviesquare.data.source.AppRepository
-import com.nicktra.moviesquare.utils.DataDummy
+import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
+import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
+import kotlin.properties.Delegates
 
 class DetailViewModel(private val appRepository: AppRepository) : ViewModel() {
-    private lateinit var movieId: String
-    private lateinit var showId: String
+    private var movieId by Delegates.notNull<Int>()
+    private var showId by Delegates.notNull<Int>()
 
-    fun setSelectedMovie(movieId: String) {
+    fun setSelectedMovie(movieId: Int) {
         this.movieId = movieId
     }
 
-    fun setSelectedShow(showId: String) {
+    fun setSelectedShow(showId: Int) {
         this.showId = showId
     }
 
-    fun getMovie(): LiveData<MovieEntity> = appRepository.getDetailMovie(movieId)
+    fun getDetailMovie(): LiveData<DetailMovieResponse> = appRepository.getDetailMovie(movieId)
 
-    fun getShow(): LiveData<ShowEntity> = appRepository.getDetailShow(showId)
+    fun getDetailShow(): LiveData<DetailShowResponse> = appRepository.getDetailShow(showId)
 }

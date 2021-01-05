@@ -61,7 +61,7 @@ class HomeActivityTest {
         onView(withId(R.id.tv_data_title)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_data_title)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_data_release)).check(matches(withText(dummyMovie[0].release)))
+        onView(withId(R.id.tv_data_release)).check(matches(withText(dummyMovie[0].releaseDate)))
     }
 
     @Test
@@ -79,9 +79,9 @@ class HomeActivityTest {
         onView(withId(R.id.rv_show)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         Thread.sleep(2000)
         onView(withId(R.id.tv_data_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_data_title)).check(matches(withText(dummyShow[0].title)))
+        onView(withId(R.id.tv_data_title)).check(matches(withText(dummyShow[0].name)))
         onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_data_release)).check(matches(withText(dummyShow[0].release)))
+        onView(withId(R.id.tv_data_release)).check(matches(withText(dummyShow[0].firstAirDate)))
     }
 
     @Test

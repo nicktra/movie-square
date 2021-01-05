@@ -8,13 +8,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nicktra.moviesquare.R
 import com.nicktra.moviesquare.data.MovieEntity
+import com.nicktra.moviesquare.data.source.remote.response.movie.ResultsMovieItem
 import com.nicktra.moviesquare.databinding.ItemsMovieBinding
 import com.nicktra.moviesquare.ui.detail.DetailActivity
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
-    private var listMovies = ArrayList<MovieEntity>()
+    private var listMovies = ArrayList<ResultsMovieItem>()
 
-    fun setMovies(movies: List<MovieEntity>?) {
+    fun setMovies(movies: List<ResultsMovieItem>?) {
         if (movies == null) return
         this.listMovies.clear()
         this.listMovies.addAll(movies)
@@ -34,19 +35,19 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
 
     class MovieViewHolder(private val binding: ItemsMovieBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: MovieEntity) {
+        fun bind(movie: ResultsMovieItem) {
             with(binding) {
-                val year = movie.release?.substring(0,4)
+                val year = movie.releaseDate.substring(0,4)
                 val titleYear = movie.title
                 tvItemTitle.text = itemView.context.getString(R.string.item_title, titleYear, year)
-                tvItemRating.text = movie.rating
+                tvItemRating.text = movie.voteAverage.toString()
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_MOVIE, movie.movieId)
+                    intent.putExtra(DetailActivity.EXTRA_MOVIE, movie.id)
                     itemView.context.startActivity(intent)
                 }
                 Glide.with(itemView.context)
-                        .load(movie.image)
+                        .load("https://image.tmdb.org/t/p/w500" + movie.posterPath)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
                         .into(ivItemPoster)

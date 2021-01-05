@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nicktra.moviesquare.data.MovieEntity
 import com.nicktra.moviesquare.data.source.AppRepository
+import com.nicktra.moviesquare.data.source.remote.response.movie.ResultsMovieItem
 import com.nicktra.moviesquare.utils.DataDummy
 import org.junit.Test
 import org.junit.Assert.*
@@ -28,7 +29,7 @@ class MoviesViewModelTest {
     private lateinit var appRepository: AppRepository
 
     @Mock
-    private lateinit var observer: Observer<List<MovieEntity>>
+    private lateinit var observer: Observer<List<ResultsMovieItem>>
 
     @Before
     fun setUp() {
@@ -38,16 +39,16 @@ class MoviesViewModelTest {
     @Test
     fun getMovies() {
         val dummyMovies = DataDummy.generateDummyMovies()
-        val movies = MutableLiveData<List<MovieEntity>>()
+        val movies = MutableLiveData<List<ResultsMovieItem>>()
         movies.value = dummyMovies
 
         `when`(appRepository.getAllMovies()).thenReturn(movies)
-        val movieEntities = viewModel.getMovies().value
+        val movieEntities = viewModel.getAllMovies().value
         verify(appRepository).getAllMovies()
         assertNotNull(movieEntities)
         assertEquals(10, movieEntities?.size)
 
-        viewModel.getMovies().observeForever(observer)
+        viewModel.getAllMovies().observeForever(observer)
         verify(observer).onChanged(dummyMovies)
     }
 }

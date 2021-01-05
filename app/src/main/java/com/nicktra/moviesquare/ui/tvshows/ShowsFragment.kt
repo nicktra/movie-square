@@ -16,7 +16,7 @@ class ShowsFragment : Fragment() {
 
     private lateinit var fragmentShowsBinding: FragmentShowsBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         fragmentShowsBinding = FragmentShowsBinding.inflate(layoutInflater, container, false)
         return fragmentShowsBinding.root
@@ -32,7 +32,7 @@ class ShowsFragment : Fragment() {
             val showsAdapter = ShowsAdapter()
 
             showLoading(true)
-            viewModel.getShows().observe(viewLifecycleOwner, Observer { shows ->
+            viewModel.getAllShows().observe(viewLifecycleOwner, { shows ->
                 showLoading(false)
                 showsAdapter.setShows(shows)
                 showsAdapter.notifyDataSetChanged()

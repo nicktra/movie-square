@@ -8,7 +8,7 @@ import com.nicktra.moviesquare.utils.JsonHelper
 object Injection {
     fun provideRepository(context: Context): AppRepository {
 
-        val remoteDataSource = RemoteDataSource.getInstance(JsonHelper(context))
+        val remoteDataSource = RemoteDataSource.getInstance()
 
         return AppRepository.getInstance(remoteDataSource)
     }

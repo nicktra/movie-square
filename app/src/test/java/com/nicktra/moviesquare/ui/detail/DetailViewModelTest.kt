@@ -6,6 +6,8 @@ import androidx.lifecycle.Observer
 import com.nicktra.moviesquare.data.MovieEntity
 import com.nicktra.moviesquare.data.ShowEntity
 import com.nicktra.moviesquare.data.source.AppRepository
+import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
+import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
 import com.nicktra.moviesquare.utils.DataDummy
 import org.junit.Test
 
@@ -22,10 +24,10 @@ import org.mockito.junit.MockitoJUnitRunner
 class DetailViewModelTest {
 
     private lateinit var viewModel: DetailViewModel
-    private val dummyMovie = DataDummy.generateDummyMovies()[0]
-    private val dummyShow = DataDummy.generateDummyShows()[0]
-    private val movieId = dummyMovie.movieId
-    private val showId = dummyShow.showId
+    private val dummyMovie = DataDummy.generateRemoteDummyMoviesDetail(464052)
+    private val dummyShow = DataDummy.generateRemoteDummyShowsDetail(44217)
+    private val movieId = dummyMovie.id
+    private val showId = dummyShow.id
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -34,10 +36,10 @@ class DetailViewModelTest {
     private lateinit var appRepository: AppRepository
 
     @Mock
-    private lateinit var movieObserver: Observer<MovieEntity>
+    private lateinit var movieObserver: Observer<DetailMovieResponse>
 
     @Mock
-    private lateinit var showObserver: Observer<ShowEntity>
+    private lateinit var showObserver: Observer<DetailShowResponse>
 
     @Before
     fun setUp() {
@@ -48,41 +50,41 @@ class DetailViewModelTest {
 
     @Test
     fun getMovie() {
-        val movie = MutableLiveData<MovieEntity>()
+        val movie = MutableLiveData<DetailMovieResponse>()
         movie.value = dummyMovie
 
         `when`(appRepository.getDetailMovie(movieId)).thenReturn(movie)
-        val movieEntity = viewModel.getMovie().value as MovieEntity
+        val movieEntity = viewModel.getDetailMovie().value as DetailMovieResponse
         verify(appRepository).getDetailMovie(movieId)
         assertNotNull(movieEntity)
-        assertEquals(dummyMovie.movieId, movieEntity.movieId)
+        assertEquals(dummyMovie.id, movieEntity.id)
         assertEquals(dummyMovie.title, movieEntity.title)
         assertEquals(dummyMovie.overview, movieEntity.overview)
-        assertEquals(dummyMovie.image, movieEntity.image)
-        assertEquals(dummyMovie.release, movieEntity.release)
-        assertEquals(dummyMovie.rating, movieEntity.rating)
+        assertEquals(dummyMovie.posterPath, movieEntity.posterPath)
+        assertEquals(dummyMovie.releaseDate, movieEntity.releaseDate)
+        assertEquals(dummyMovie.voteAverage, movieEntity.voteAverage, 0.0)
 
-        viewModel.getMovie().observeForever(movieObserver)
+        viewModel.getDetailMovie().observeForever(movieObserver)
         verify(movieObserver).onChanged(dummyMovie)
     }
 
     @Test
     fun getShow() {
-        val show = MutableLiveData<ShowEntity>()
+        val show = MutableLiveData<DetailShowResponse>()
         show.value = dummyShow
 
         `when`(appRepository.getDetailShow(showId)).thenReturn(show)
-        val showEntity = viewModel.getShow().value as ShowEntity
+        val showEntity = viewModel.getDetailShow().value as DetailShowResponse
         verify(appRepository).getDetailShow(showId)
         assertNotNull(showEntity)
-        assertEquals(dummyShow.showId, showEntity.showId)
-        assertEquals(dummyShow.title, showEntity.title)
+        assertEquals(dummyShow.id, showEntity.id)
+        assertEquals(dummyShow.name, showEntity.name)
         assertEquals(dummyShow.overview, showEntity.overview)
-        assertEquals(dummyShow.image, showEntity.image)
-        assertEquals(dummyShow.release, showEntity.release)
-        assertEquals(dummyShow.rating, showEntity.rating)
+        assertEquals(dummyShow.posterPath, showEntity.posterPath)
+        assertEquals(dummyShow.firstAirDate, showEntity.firstAirDate)
+        assertEquals(dummyShow.voteAverage, showEntity.voteAverage, 0.0)
 
-        viewModel.getShow().observeForever(showObserver)
+        viewModel.getDetailShow().observeForever(showObserver)
         verify(showObserver).onChanged(dummyShow)
     }
 
