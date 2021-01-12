@@ -15,7 +15,7 @@ class ShowsAdapter : RecyclerView.Adapter<ShowsAdapter.ShowViewHolder>() {
     private var listShows = ArrayList<ResultsShowItem>()
 
     fun setShows(shows: List<ResultsShowItem>?) {
-        if (shows == null) return
+        if (shows.isNullOrEmpty()) return
         this.listShows.clear()
         this.listShows.addAll(shows)
     }

@@ -15,7 +15,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
     private var listMovies = ArrayList<ResultsMovieItem>()
 
     fun setMovies(movies: List<ResultsMovieItem>?) {
-        if (movies == null) return
+        if (movies.isNullOrEmpty()) return
         this.listMovies.clear()
         this.listMovies.addAll(movies)
     }

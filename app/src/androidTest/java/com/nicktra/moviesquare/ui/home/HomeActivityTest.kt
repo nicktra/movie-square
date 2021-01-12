@@ -28,6 +28,8 @@ class HomeActivityTest {
     * Memberi tindakan klik pada data pertama di rv_movie
     * Memastikan TextView untuk title tampil sesuai dengan yang diharapkan
     * Memastikan TextView untuk release tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk rating tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk overview tampil sesuai dengan yang diharapkan
     *
     * 3. loadShows()
     * Klik TabLayout dengan teks TV SHOW
@@ -39,6 +41,8 @@ class HomeActivityTest {
     * Memberi tindakan klik pada data pertama di rv_show
     * Memastikan TextView untuk title tampil sesuai dengan yang diharapkan
     * Memastikan TextView untuk release tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk rating tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk overview tampil sesuai dengan yang diharapkan
     *
     * 5. loadAbout()
     * Klik ActionBar lalu Klik teks About
@@ -72,6 +76,10 @@ class HomeActivityTest {
         onView(withId(R.id.tv_data_title)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_data_release)).check(matches(withText(dummyMovie[0].releaseDate)))
+        onView(withId(R.id.tv_data_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_data_rating)).check(matches(withText(dummyMovie[0].voteAverage.toString())))
+        onView(withId(R.id.tv_data_overview)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_data_overview)).check(matches(withText(dummyMovie[0].overview)))
     }
 
     @Test
@@ -89,6 +97,10 @@ class HomeActivityTest {
         onView(withId(R.id.tv_data_title)).check(matches(withText(dummyShow[0].name)))
         onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_data_release)).check(matches(withText(dummyShow[0].firstAirDate)))
+        onView(withId(R.id.tv_data_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_data_rating)).check(matches(withText(dummyShow[0].voteAverage.toString())))
+        onView(withId(R.id.tv_data_overview)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_data_overview)).check(matches(withText(dummyShow[0].overview)))
     }
 
     @Test
