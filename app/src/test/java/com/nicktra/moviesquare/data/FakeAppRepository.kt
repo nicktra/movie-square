@@ -2,14 +2,11 @@ package com.nicktra.moviesquare.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.nicktra.moviesquare.data.source.AppDataSource
 import com.nicktra.moviesquare.data.source.remote.RemoteDataSource
 import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
-import com.nicktra.moviesquare.data.source.remote.response.movie.MovieResponse
 import com.nicktra.moviesquare.data.source.remote.response.movie.ResultsMovieItem
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.ResultsShowItem
-import com.nicktra.moviesquare.data.source.remote.response.tvshow.ShowResponse
 
 class FakeAppRepository(private val remoteDataSource: RemoteDataSource) :
     AppDataSource {

@@ -3,7 +3,7 @@ package com.nicktra.moviesquare.ui.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.nicktra.moviesquare.data.source.AppRepository
+import com.nicktra.moviesquare.data.AppRepository
 import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
 import com.nicktra.moviesquare.utils.DataDummy

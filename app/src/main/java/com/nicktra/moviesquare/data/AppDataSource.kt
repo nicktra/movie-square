@@ -1,4 +1,4 @@
-package com.nicktra.moviesquare.data.source
+package com.nicktra.moviesquare.data
 
 import androidx.lifecycle.LiveData
 import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse

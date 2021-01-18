@@ -3,7 +3,7 @@ package com.nicktra.moviesquare.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.nicktra.moviesquare.data.source.AppRepository
+import com.nicktra.moviesquare.data.AppRepository
 import com.nicktra.moviesquare.di.Injection
 import com.nicktra.moviesquare.ui.detail.DetailViewModel
 import com.nicktra.moviesquare.ui.movies.MoviesViewModel

@@ -1,4 +1,4 @@
-package com.nicktra.moviesquare.data.source
+package com.nicktra.moviesquare.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,8 @@ import com.nicktra.moviesquare.data.source.remote.response.movie.ResultsMovieIte
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.ResultsShowItem
 
-class AppRepository private constructor(private val remoteDataSource: RemoteDataSource) : AppDataSource {
+class AppRepository private constructor(private val remoteDataSource: RemoteDataSource) :
+    AppDataSource {
 
     companion object {
         @Volatile

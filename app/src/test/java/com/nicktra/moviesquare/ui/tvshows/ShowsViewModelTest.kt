@@ -3,7 +3,7 @@ package com.nicktra.moviesquare.ui.tvshows
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.nicktra.moviesquare.data.source.AppRepository
+import com.nicktra.moviesquare.data.AppRepository
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.ResultsShowItem
 import com.nicktra.moviesquare.utils.DataDummy
 import org.junit.Assert.assertEquals

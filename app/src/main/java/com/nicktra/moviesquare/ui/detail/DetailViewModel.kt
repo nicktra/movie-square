@@ -2,7 +2,7 @@ package com.nicktra.moviesquare.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.nicktra.moviesquare.data.source.AppRepository
+import com.nicktra.moviesquare.data.AppRepository
 import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
 import kotlin.properties.Delegates
