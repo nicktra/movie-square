@@ -21,6 +21,8 @@ class LocalDataSource private constructor(private val mCatalogueDao: CatalogueDa
 
     fun getMovieById(movieId: Int): LiveData<MovieEntity> = mCatalogueDao.getMovieById(movieId)
 
+    fun updateMovieById(movie: MovieEntity) = mCatalogueDao.updateMovie(movie)
+
     fun getFavoriteMovies(): LiveData<List<MovieEntity>> = mCatalogueDao.getFavoriteMovies()
 
     fun setMovieFavorite(movie: MovieEntity, newState: Boolean) {
@@ -34,6 +36,8 @@ class LocalDataSource private constructor(private val mCatalogueDao: CatalogueDa
     fun insertShows(shows: List<ShowEntity>) = mCatalogueDao.insertShows(shows)
 
     fun getShowById(showId: Int): LiveData<ShowEntity> = mCatalogueDao.getShowById(showId)
+
+    fun updateShowById(show: ShowEntity) = mCatalogueDao.updateShow(show)
 
     fun getFavoriteShows(): LiveData<List<ShowEntity>> = mCatalogueDao.getFavoriteShows()
 

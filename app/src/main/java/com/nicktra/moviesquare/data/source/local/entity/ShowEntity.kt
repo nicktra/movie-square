@@ -12,8 +12,8 @@ data class ShowEntity(
         @ColumnInfo(name = "showId")
         var showId: Int,
 
-        @ColumnInfo(name = "title")
-        var title: String,
+        @ColumnInfo(name = "name")
+        var name: String,
 
         @ColumnInfo(name = "overview")
         var overview: String,

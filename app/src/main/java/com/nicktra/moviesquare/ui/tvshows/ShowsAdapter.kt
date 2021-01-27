@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nicktra.moviesquare.R
+import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.ResultsShowItem
 import com.nicktra.moviesquare.databinding.ItemsShowBinding
 import com.nicktra.moviesquare.ui.detail.DetailActivity
 
 class ShowsAdapter : RecyclerView.Adapter<ShowsAdapter.ShowViewHolder>() {
-    private var listShows = ArrayList<ResultsShowItem>()
+    private var listShows = ArrayList<ShowEntity>()
 
-    fun setShows(shows: List<ResultsShowItem>?) {
+    fun setShows(shows: List<ShowEntity>?) {
         if (shows.isNullOrEmpty()) return
         this.listShows.clear()
         this.listShows.addAll(shows)
@@ -34,7 +35,7 @@ class ShowsAdapter : RecyclerView.Adapter<ShowsAdapter.ShowViewHolder>() {
 
 
     class ShowViewHolder(private val binding: ItemsShowBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(show: ResultsShowItem) {
+        fun bind(show: ShowEntity) {
             with(binding) {
                 val year = show.firstAirDate.substring(0,4)
                 val titleYear = show.name
@@ -42,7 +43,7 @@ class ShowsAdapter : RecyclerView.Adapter<ShowsAdapter.ShowViewHolder>() {
                 tvItemRating.text = show.voteAverage.toString()
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_SHOW, show.id)
+                    intent.putExtra(DetailActivity.EXTRA_SHOW, show.showId)
                     itemView.context.startActivity(intent)
                 }
                 Glide.with(itemView.context)

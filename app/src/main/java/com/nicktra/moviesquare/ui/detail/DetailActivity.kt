@@ -4,17 +4,23 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.nicktra.moviesquare.R
+import com.nicktra.moviesquare.data.source.local.entity.MovieEntity
+import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
 import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
 import com.nicktra.moviesquare.databinding.ActivityDetailBinding
 import com.nicktra.moviesquare.databinding.ContentDetailBinding
+import com.nicktra.moviesquare.utils.EspressoIdlingResource
 import com.nicktra.moviesquare.viewmodel.ViewModelFactory
+import com.nicktra.moviesquare.vo.Status
+import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -49,26 +55,46 @@ class DetailActivity : AppCompatActivity() {
 
             when {
                 extras.containsKey(EXTRA_MOVIE) -> {
-                    activityDetailBinding.progressBar.visibility = View.VISIBLE
-                    activityDetailBinding.content.visibility = View.INVISIBLE
-
                     viewModel.setSelectedMovie(movieId)
                     viewModel.getDetailMovie().observe(this, { movie ->
-                        activityDetailBinding.progressBar.visibility = View.GONE
-                        activityDetailBinding.content.visibility = View.VISIBLE
-                        populateMovie(movie)
+                        if (movie != null) {
+                            when (movie.status) {
+                                Status.LOADING -> showLoading(true)
+                                Status.SUCCESS -> {
+                                    showLoading(false)
+                                    if (movie.data != null) {
+                                        populateMovie(movie.data)
+                                    }
+                                }
+                                Status.ERROR -> {
+                                    showLoading(false)
+                                    Toast.makeText(this, "An Error Occurred", Toast.LENGTH_SHORT)
+                                            .show()
+                                }
+                            }
+                        }
                     })
                 }
 
                 extras.containsKey(EXTRA_SHOW) -> {
-                    activityDetailBinding.progressBar.visibility = View.VISIBLE
-                    activityDetailBinding.content.visibility = View.INVISIBLE
-
                     viewModel.setSelectedShow(showId)
                     viewModel.getDetailShow().observe(this, { show ->
-                        activityDetailBinding.progressBar.visibility = View.GONE
-                        activityDetailBinding.content.visibility = View.VISIBLE
-                        populateShow(show)
+                        if (show != null) {
+                            when (show.status) {
+                                Status.LOADING -> showLoading(true)
+                                Status.SUCCESS -> {
+                                    showLoading(false)
+                                    if (show.data != null) {
+                                        populateShow(show.data)
+                                    }
+                                }
+                                Status.ERROR -> {
+                                    showLoading(false)
+                                    Toast.makeText(this, "An Error Occurred", Toast.LENGTH_SHORT)
+                                            .show()
+                                }
+                            }
+                        }
                     })
                 }
             }
@@ -76,7 +102,7 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    private fun populateMovie(detailMovieResponse: DetailMovieResponse) {
+    private fun populateMovie(detailMovieResponse: MovieEntity) {
         val movieTitle = detailMovieResponse.title
         val movieRelease = detailMovieResponse.releaseDate
         val movieRating = detailMovieResponse.voteAverage
@@ -107,7 +133,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun populateShow(detailShowResponse: DetailShowResponse) {
+    private fun populateShow(detailShowResponse: ShowEntity) {
         val showTitle = detailShowResponse.name
         val showRelease = detailShowResponse.firstAirDate
         val showRating = detailShowResponse.voteAverage
@@ -141,5 +167,15 @@ class DetailActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    private fun showLoading(state: Boolean) {
+        if (state) {
+            progress_bar.visibility = View.VISIBLE
+            content.visibility = View.GONE
+        } else {
+            progress_bar.visibility = View.GONE
+            content.visibility = View.VISIBLE
+        }
     }
 }

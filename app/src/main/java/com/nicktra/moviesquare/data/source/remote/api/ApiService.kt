@@ -13,7 +13,7 @@ interface ApiService {
     fun getAllMovies(@Query("api_key") apiKey: String): Call<DiscoverMovieResponse>
 
     @GET("movie/{movieId}")
-    fun getDetailMovies(
+    fun getDetailMovie(
             @Path("movieId") movieId: Int,
             @Query("api_key") apiKey: String
     ): Call<DetailMovieResponse>

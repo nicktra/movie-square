@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nicktra.moviesquare.R
+import com.nicktra.moviesquare.data.source.local.entity.MovieEntity
 import com.nicktra.moviesquare.data.source.remote.response.movie.ResultsMovieItem
 import com.nicktra.moviesquare.databinding.ItemsMovieBinding
 import com.nicktra.moviesquare.ui.detail.DetailActivity
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
-    private var listMovies = ArrayList<ResultsMovieItem>()
+    private var listMovies = ArrayList<MovieEntity>()
 
-    fun setMovies(movies: List<ResultsMovieItem>?) {
+    fun setMovies(movies: List<MovieEntity>?) {
         if (movies.isNullOrEmpty()) return
         this.listMovies.clear()
         this.listMovies.addAll(movies)
@@ -34,7 +35,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
 
     class MovieViewHolder(private val binding: ItemsMovieBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: ResultsMovieItem) {
+        fun bind(movie: MovieEntity) {
             with(binding) {
                 val year = movie.releaseDate.substring(0,4)
                 val titleYear = movie.title
@@ -42,7 +43,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
                 tvItemRating.text = movie.voteAverage.toString()
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_MOVIE, movie.id)
+                    intent.putExtra(DetailActivity.EXTRA_MOVIE, movie.movieId)
                     itemView.context.startActivity(intent)
                 }
                 Glide.with(itemView.context)

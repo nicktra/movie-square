@@ -12,13 +12,13 @@ interface CatalogueDao {
     fun getMovies(): LiveData<List<MovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovies(courses: List<MovieEntity>)
+    fun insertMovies(movies: List<MovieEntity>)
 
     @Query("SELECT * FROM movieentities WHERE movieId = :movieId")
     fun getMovieById(movieId: Int): LiveData<MovieEntity>
 
     @Update
-    fun updateMovie(course: MovieEntity)
+    fun updateMovie(movie: MovieEntity)
 
     @Query("SELECT * FROM movieentities where isFavorite = 1")
     fun getFavoriteMovies(): LiveData<List<MovieEntity>>
@@ -28,13 +28,13 @@ interface CatalogueDao {
     fun getShows(): LiveData<List<ShowEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertShows(courses: List<ShowEntity>)
+    fun insertShows(shows: List<ShowEntity>)
 
     @Query("SELECT * FROM showentities WHERE showId = :showId")
     fun getShowById(showId: Int): LiveData<ShowEntity>
 
     @Update
-    fun updateShow(course: ShowEntity)
+    fun updateShow(show: ShowEntity)
 
     @Query("SELECT * FROM showentities where isFavorite = 1")
     fun getFavoriteShows(): LiveData<List<ShowEntity>>

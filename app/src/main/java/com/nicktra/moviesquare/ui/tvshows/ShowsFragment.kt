@@ -5,20 +5,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nicktra.moviesquare.databinding.FragmentShowsBinding
 import com.nicktra.moviesquare.viewmodel.ViewModelFactory
+import com.nicktra.moviesquare.vo.Status
 
 class ShowsFragment : Fragment() {
 
-    private lateinit var fragmentShowsBinding: FragmentShowsBinding
+    private var _fragmentShowsBinding: FragmentShowsBinding? = null
+    private val binding get() = _fragmentShowsBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        fragmentShowsBinding = FragmentShowsBinding.inflate(layoutInflater, container, false)
-        return fragmentShowsBinding.root
+        _fragmentShowsBinding = FragmentShowsBinding.inflate(layoutInflater, container, false)
+        return binding?.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -29,30 +32,39 @@ class ShowsFragment : Fragment() {
             val viewModel = ViewModelProvider(this, factory)[ShowsViewModel::class.java]
 
             val showsAdapter = ShowsAdapter()
-
-            showLoading(true)
             viewModel.getAllShows().observe(viewLifecycleOwner, { shows ->
-                showLoading(false)
-                showsAdapter.setShows(shows)
-                showsAdapter.notifyDataSetChanged()
+                if (shows != null) {
+                    when (shows.status) {
+                        Status.LOADING -> showLoading(true)
+                        Status.SUCCESS -> {
+                            showLoading(false)
+                            showsAdapter.setShows(shows.data)
+                            showsAdapter.notifyDataSetChanged()
+                        }
+                        Status.ERROR -> {
+                            showLoading(false)
+                            Toast.makeText(context, "An Error Occurred", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             })
 
-            with(fragmentShowsBinding.rvShow) {
+            with(binding?.rvShow) {
                 val orientation = this@ShowsFragment.resources.configuration.orientation
                 val spanCount = if (orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 3
 
-                layoutManager = GridLayoutManager(context, spanCount)
-                setHasFixedSize(true)
-                adapter = showsAdapter
+                this?.layoutManager = GridLayoutManager(context, spanCount)
+                this?.setHasFixedSize(true)
+                this?.adapter = showsAdapter
             }
         }
     }
 
     private fun showLoading(state: Boolean) {
         if (state) {
-            fragmentShowsBinding.progressBar.visibility = View.VISIBLE
+            binding?.progressBar?.visibility = View.VISIBLE
         } else {
-            fragmentShowsBinding.progressBar.visibility = View.GONE
+            binding?.progressBar?.visibility = View.GONE
         }
     }
 
