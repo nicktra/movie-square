@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.nicktra.moviesquare.data.AppRepository
 import com.nicktra.moviesquare.di.Injection
 import com.nicktra.moviesquare.ui.detail.DetailViewModel
+import com.nicktra.moviesquare.ui.favorite.favoritemovies.FavoriteMoviesViewModel
+import com.nicktra.moviesquare.ui.favorite.favoritetvshows.FavoriteShowsViewModel
 import com.nicktra.moviesquare.ui.movies.MoviesViewModel
 import com.nicktra.moviesquare.ui.tvshows.ShowsViewModel
 
@@ -32,6 +34,12 @@ class ViewModelFactory private constructor(private val mAppRepository: AppReposi
             }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 return DetailViewModel(mAppRepository) as T
+            }
+            modelClass.isAssignableFrom(FavoriteMoviesViewModel::class.java) -> {
+                return FavoriteMoviesViewModel(mAppRepository) as T
+            }
+            modelClass.isAssignableFrom(FavoriteShowsViewModel::class.java) -> {
+                return FavoriteShowsViewModel(mAppRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

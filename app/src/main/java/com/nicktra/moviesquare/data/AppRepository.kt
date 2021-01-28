@@ -144,4 +144,10 @@ class AppRepository private constructor(
 
     override fun setShowFavorite(show: ShowEntity, state: Boolean) =
             appExecutors.diskIO().execute { localDataSource.setShowFavorite(show, state) }
+
+    override fun getFavoriteMovies(): LiveData<List<MovieEntity>> =
+        localDataSource.getFavoriteMovies()
+
+    override fun getFavoriteShows(): LiveData<List<ShowEntity>> =
+        localDataSource.getFavoriteShows()
 }

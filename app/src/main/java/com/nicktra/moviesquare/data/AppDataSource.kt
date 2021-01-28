@@ -18,7 +18,7 @@ interface AppDataSource {
 
     fun setShowFavorite(show: ShowEntity, isFavorite: Boolean)
 
-    /*fun getFavoriteMovies(): LiveData<List<MovieEntity>>
+    fun getFavoriteMovies(): LiveData<List<MovieEntity>>
 
-    fun getFavoriteShows(): LiveData<List<ShowEntity>>*/
+    fun getFavoriteShows(): LiveData<List<ShowEntity>>
 }
