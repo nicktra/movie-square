@@ -13,11 +13,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.nicktra.moviesquare.R
 import com.nicktra.moviesquare.data.source.local.entity.MovieEntity
 import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
-import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
-import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
 import com.nicktra.moviesquare.databinding.ActivityDetailBinding
 import com.nicktra.moviesquare.databinding.ContentDetailBinding
-import com.nicktra.moviesquare.utils.EspressoIdlingResource
 import com.nicktra.moviesquare.viewmodel.ViewModelFactory
 import com.nicktra.moviesquare.vo.Status
 import kotlinx.android.synthetic.main.activity_detail.*
