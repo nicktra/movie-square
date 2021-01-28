@@ -7,13 +7,6 @@
     android:orientation="vertical"
     tools:context=".ui.home.HomeActivity">
 
-    <LinearLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
@@ -26,18 +19,4 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    </LinearLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemIconTint="@color/selector_nav_item"
-        app:itemTextColor="@color/selector_nav_item"
-        app:itemBackground="@color/red_secondary_dark"
-        app:itemIconSize="24dp"
-        app:elevation="2dp"
-        app:menu="@menu/menu_bottom_navigation"
-        />
 </LinearLayout>

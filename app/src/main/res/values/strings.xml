@@ -40,4 +40,7 @@
     <string name="profile_name_facebook">facebook.com/koniksaputra</string>
     <string name="img_poster">Image Poster</string>
     <string name="item_title"> %1$s (%2$s)</string>
+    <string name="title_home">Home</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_about">About</string>
 </resources>

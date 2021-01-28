@@ -15,34 +15,10 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        /*val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         view_pager.adapter = sectionsPagerAdapter
-        tabs.setupWithViewPager(view_pager)
+        tabs.setupWithViewPager(view_pager)*/
         supportActionBar?.elevation = 0f
-
-        /*val item: MenuItem = bottomNav.menu.findItem(R.id.menu_home)
-        item.isChecked = true*/
-        bottomNav.selectedItemId = R.id.menu_home
-
-        bottomNav.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.menu_home -> {
-                    Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.menu_favorite -> {
-                    Toast.makeText(this, "Notification", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.menu_info -> {
-                    val moveAboutIntent = Intent(this, AboutActivity::class.java)
-                    moveAboutIntent.putExtra("activity","home");
-                    startActivity(moveAboutIntent)
-                    true
-                }
-                else -> false
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -62,9 +38,4 @@ class HomeActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    /*override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
-    }*/
 }

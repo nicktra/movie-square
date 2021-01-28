@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.about.AboutActivity">
-
-    <ScrollView
-        android:layout_above="@+id/bottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -207,17 +201,5 @@
         </RelativeLayout>
 
     </RelativeLayout>
-    </ScrollView>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemIconTint="@color/selector_nav_item"
-        app:itemTextColor="@color/selector_nav_item"
-        app:itemBackground="@color/red_secondary_dark"
-        app:itemIconSize="24dp"
-        app:elevation="2dp"
-        app:menu="@menu/menu_bottom_navigation"
-        />
-</RelativeLayout>
+
+</ScrollView>

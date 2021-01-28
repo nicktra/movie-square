@@ -9,7 +9,7 @@ import com.nicktra.moviesquare.R
 import com.nicktra.moviesquare.ui.movies.MoviesFragment
 import com.nicktra.moviesquare.ui.tvshows.ShowsFragment
 
-class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionsPagerAdapter(private val mContext: HomeFragment, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
         @StringRes
