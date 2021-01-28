@@ -24,11 +24,33 @@ class DetailViewModel(private val appRepository: AppRepository) : ViewModel() {
         this.showId.value = showId
     }
 
-    fun getDetailMovie(): LiveData<Resource<MovieEntity>> = Transformations.switchMap(movieId) { id ->
+    var getDetailMovie: LiveData<Resource<MovieEntity>> = Transformations.switchMap(movieId) { id ->
         appRepository.getDetailMovie(id)
     }
 
-    fun getDetailShow(): LiveData<Resource<ShowEntity>> = Transformations.switchMap(showId) { id ->
+    var getDetailShow: LiveData<Resource<ShowEntity>> = Transformations.switchMap(showId) { id ->
         appRepository.getDetailShow(id)
+    }
+
+    fun setFavoriteMovie() {
+        val movieResource = getDetailMovie.value
+        if (movieResource != null) {
+            val movieEntity = movieResource.data
+            if (movieEntity != null) {
+                val newState = !movieEntity.isFavorite
+                appRepository.setMovieFavorite(movieEntity, newState)
+            }
+        }
+    }
+
+    fun setFavoriteShow() {
+        val showResource = getDetailShow.value
+        if (showResource != null) {
+            val showEntity = showResource.data
+            if (showEntity != null) {
+                val newState = !showEntity.isFavorite
+                appRepository.setShowFavorite(showEntity, newState)
+            }
+        }
     }
 }

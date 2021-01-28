@@ -138,4 +138,10 @@ class AppRepository private constructor(
             }
         }.asLiveData()
     }
+
+    override fun setMovieFavorite(movie: MovieEntity, state: Boolean) =
+            appExecutors.diskIO().execute { localDataSource.setMovieFavorite(movie, state) }
+
+    override fun setShowFavorite(show: ShowEntity, state: Boolean) =
+            appExecutors.diskIO().execute { localDataSource.setShowFavorite(show, state) }
 }

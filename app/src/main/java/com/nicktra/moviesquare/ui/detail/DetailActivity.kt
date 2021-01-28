@@ -3,9 +3,12 @@ package com.nicktra.moviesquare.ui.detail
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -28,6 +31,9 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private lateinit var detailContentBinding: ContentDetailBinding
+
+    private lateinit var viewModel: DetailViewModel
+    private var menu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +59,7 @@ class DetailActivity : AppCompatActivity() {
             when {
                 extras.containsKey(EXTRA_MOVIE) -> {
                     viewModel.setSelectedMovie(movieId)
-                    viewModel.getDetailMovie().observe(this, { movie ->
+                    viewModel.getDetailMovie.observe(this, { movie ->
                         if (movie != null) {
                             when (movie.status) {
                                 Status.LOADING -> showLoading(true)
@@ -75,7 +81,7 @@ class DetailActivity : AppCompatActivity() {
 
                 extras.containsKey(EXTRA_SHOW) -> {
                     viewModel.setSelectedShow(showId)
-                    viewModel.getDetailShow().observe(this, { show ->
+                    viewModel.getDetailShow.observe(this, { show ->
                         if (show != null) {
                             when (show.status) {
                                 Status.LOADING -> showLoading(true)
@@ -173,6 +179,91 @@ class DetailActivity : AppCompatActivity() {
         } else {
             progress_bar.visibility = View.GONE
             content.visibility = View.VISIBLE
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        this.menu = menu
+        val extras = intent.extras
+
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
+
+        if (extras != null) {
+            when {
+                extras.containsKey(EXTRA_MOVIE) -> {
+                    viewModel.getDetailMovie.observe(this, { movie ->
+                        if (movie != null) {
+                            when (movie.status) {
+                                Status.LOADING -> showLoading(true)
+                                Status.SUCCESS -> if (movie.data != null) {
+                                    showLoading(false)
+                                    val state = movie.data.isFavorite
+                                    setBookmarkState(state)
+                                }
+                                Status.ERROR -> {
+                                    showLoading(false)
+                                    Toast.makeText(applicationContext, "An Error Occurred", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    })
+                }
+                extras.containsKey(EXTRA_SHOW) -> {
+                    viewModel.getDetailShow.observe(this, { show ->
+                        if (show != null) {
+                            when (show.status) {
+                                Status.LOADING -> showLoading(true)
+                                Status.SUCCESS -> if (show.data != null) {
+                                    showLoading(false)
+                                    val state = show.data.isFavorite
+                                    setBookmarkState(state)
+                                }
+                                Status.ERROR -> {
+                                    showLoading(false)
+                                    Toast.makeText(applicationContext, "An Error Occurred", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_bookmark) {
+            val extras = intent.extras
+
+            val factory = ViewModelFactory.getInstance(this)
+            val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
+
+            if (extras != null) {
+                when {
+                    extras.containsKey(EXTRA_MOVIE) -> {
+                        viewModel.setFavoriteMovie()
+                    }
+                    extras.containsKey(EXTRA_SHOW) -> {
+                        viewModel.setFavoriteShow()
+                    }
+                }
+            }
+
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setBookmarkState(state: Boolean) {
+        if (menu == null) return
+        val menuItem = menu?.findItem(R.id.action_bookmark)
+        if (state) {
+            menuItem?.icon = ContextCompat.getDrawable(this, R.drawable.ic_bookmarked_white)
+        } else {
+            menuItem?.icon = ContextCompat.getDrawable(this, R.drawable.ic_bookmark_white)
         }
     }
 }

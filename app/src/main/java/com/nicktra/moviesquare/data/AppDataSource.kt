@@ -14,11 +14,11 @@ interface AppDataSource {
 
     fun getDetailShow(showId: Int): LiveData<Resource<ShowEntity>>
 
-    /*fun setFavoriteMovie(movie: MovieEntity, isFavorite: Boolean)
+    fun setMovieFavorite(movie: MovieEntity, isFavorite: Boolean)
 
-    fun setFavoriteShow(show: ShowEntity, isFavorite: Boolean)
+    fun setShowFavorite(show: ShowEntity, isFavorite: Boolean)
 
-    fun getFavoriteMovies(): LiveData<List<MovieEntity>>
+    /*fun getFavoriteMovies(): LiveData<List<MovieEntity>>
 
     fun getFavoriteShows(): LiveData<List<ShowEntity>>*/
 }
