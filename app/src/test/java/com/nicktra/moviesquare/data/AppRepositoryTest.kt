@@ -1,11 +1,16 @@
 package com.nicktra.moviesquare.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.eq
+import com.nicktra.moviesquare.data.source.local.LocalDataSource
+import com.nicktra.moviesquare.data.source.local.entity.MovieEntity
+import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
 import com.nicktra.moviesquare.data.source.remote.RemoteDataSource
+import com.nicktra.moviesquare.utils.AppExecutors
 
 import com.nicktra.moviesquare.utils.DataDummy
 import com.nicktra.moviesquare.utils.LiveDataTestUtil
@@ -13,6 +18,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
 class AppRepositoryTest {
@@ -21,7 +27,9 @@ class AppRepositoryTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val remote = mock(RemoteDataSource::class.java)
-    private val appRepository = FakeAppRepository(remote)
+    private val local = mock(LocalDataSource::class.java)
+    private val appExecutors = mock(AppExecutors::class.java)
+    private val appRepository = FakeAppRepository(remote, local, appExecutors)
 
     private val movieResponses = DataDummy.generateRemoteDummyMovies()
     private val movieId = movieResponses[0].id
@@ -33,55 +41,51 @@ class AppRepositoryTest {
 
     @Test
     fun getAllMovies() {
-        doAnswer { invocation ->
-            (invocation.arguments[0] as RemoteDataSource.LoadMoviesCallback)
-                    .onAllMoviesReceived(movieResponses)
-            null
-        }.`when`(remote).getAllMovies(any())
+        val dummyMovies = MutableLiveData<List<MovieEntity>>()
+        dummyMovies.value = DataDummy.generateDummyMovies()
+        `when`(local.getAllMovies()).thenReturn(dummyMovies)
+
         val movieEntities = LiveDataTestUtil.getValue(appRepository.getAllMovies())
-        verify(remote).getAllMovies(any())
-        assertNotNull(movieEntities)
-        assertEquals(movieResponses.size.toLong(), movieEntities.size.toLong())
+        verify(local).getAllMovies()
+        assertNotNull(movieEntities.data)
+        assertEquals(movieResponses.size.toLong(), movieEntities.data?.size?.toLong())
     }
 
     @Test
     fun getAllShows() {
-        doAnswer { invocation ->
-            (invocation.arguments[0] as RemoteDataSource.LoadShowsCallback)
-                    .onAllShowsReceived(showResponses)
-            null
-        }.`when`(remote).getAllShows(any())
+        val dummyShows = MutableLiveData<List<ShowEntity>>()
+        dummyShows.value = DataDummy.generateDummyShows()
+        `when`(local.getAllShows()).thenReturn(dummyShows)
+
         val showEntities = LiveDataTestUtil.getValue(appRepository.getAllShows())
-        verify(remote).getAllShows(any())
-        assertNotNull(showEntities)
-        assertEquals(showResponses.size.toLong(), showEntities.size.toLong())
+        verify(local).getAllShows()
+        assertNotNull(showEntities.data)
+        assertEquals(showResponses.size.toLong(), showEntities.data?.size?.toLong())
     }
 
     @Test
     fun getDetailMovie() {
-        doAnswer { invocation ->
-            (invocation.arguments[1] as RemoteDataSource.LoadDetailMovieCallback)
-                    .onDetailMovieReceived(movieDetails)
-            null
-        }.`when`(remote).getMovieDetails(eq(movieId), any())
+        val dummyDetailMovie = MutableLiveData<MovieEntity>()
+        dummyDetailMovie.value = DataDummy.generateDummyMovies()[0]
+        `when`(local.getMovieById(movieId)).thenReturn(dummyDetailMovie)
+
         val movieEntities = LiveDataTestUtil.getValue(appRepository.getDetailMovie(movieId))
-        verify(remote).getMovieDetails(eq(movieId), any())
-        assertNotNull(movieEntities)
-        assertNotNull(movieEntities.title)
-        assertEquals(movieResponses[0].title, movieEntities.title)
+        verify(local).getMovieById(movieId)
+        assertNotNull(movieEntities.data)
+        assertNotNull(movieEntities.data?.title)
+        assertEquals(movieResponses[0].title, movieEntities.data?.title)
     }
 
     @Test
     fun getDetailShow() {
-        doAnswer { invocation ->
-            (invocation.arguments[1] as RemoteDataSource.LoadDetailShowCallback)
-                    .onDetailShowReceived(showDetails)
-            null
-        }.`when`(remote).getShowDetails(eq(showId), any())
+        val dummyDetailShow = MutableLiveData<ShowEntity>()
+        dummyDetailShow.value = DataDummy.generateDummyShows()[0]
+        `when`(local.getShowById(showId)).thenReturn(dummyDetailShow)
+
         val showEntities = LiveDataTestUtil.getValue(appRepository.getDetailShow(showId))
-        verify(remote).getShowDetails(eq(showId), any())
-        assertNotNull(showEntities)
-        assertNotNull(showEntities.name)
-        assertEquals(showResponses[0].name, showEntities.name)
+        verify(local).getShowById(showId)
+        assertNotNull(showEntities.data)
+        assertNotNull(showEntities.data?.name)
+        assertEquals(showResponses[0].name, showEntities.data?.name)
     }
 }

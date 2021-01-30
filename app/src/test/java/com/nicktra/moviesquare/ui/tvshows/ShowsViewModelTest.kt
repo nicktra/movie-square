@@ -4,8 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nicktra.moviesquare.data.AppRepository
+import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
 import com.nicktra.moviesquare.data.source.remote.response.tvshow.ResultsShowItem
 import com.nicktra.moviesquare.utils.DataDummy
+import com.nicktra.moviesquare.vo.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -29,7 +31,7 @@ class ShowsViewModelTest {
     private lateinit var appRepository: AppRepository
 
     @Mock
-    private lateinit var observer: Observer<List<ResultsShowItem>>
+    private lateinit var observer: Observer<Resource<List<ShowEntity>>>
 
     @Before
     fun setUp() {
@@ -38,12 +40,12 @@ class ShowsViewModelTest {
 
     @Test
     fun getShows() {
-        val dummyShows = DataDummy.generateDummyShows()
-        val shows = MutableLiveData<List<ResultsShowItem>>()
+        val dummyShows = Resource.success(DataDummy.generateDummyShows())
+        val shows = MutableLiveData<Resource<List<ShowEntity>>>()
         shows.value = dummyShows
 
         `when`(appRepository.getAllShows()).thenReturn(shows)
-        val showEntities = viewModel.getAllShows().value
+        val showEntities = viewModel.getAllShows().value?.data
         verify(appRepository).getAllShows()
         assertNotNull(showEntities)
         assertEquals(10, showEntities?.size)

@@ -4,8 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nicktra.moviesquare.data.AppRepository
+import com.nicktra.moviesquare.data.source.local.entity.MovieEntity
 import com.nicktra.moviesquare.data.source.remote.response.movie.ResultsMovieItem
 import com.nicktra.moviesquare.utils.DataDummy
+import com.nicktra.moviesquare.vo.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -29,7 +31,7 @@ class MoviesViewModelTest {
     private lateinit var appRepository: AppRepository
 
     @Mock
-    private lateinit var observer: Observer<List<ResultsMovieItem>>
+    private lateinit var observer: Observer<Resource<List<MovieEntity>>>
 
     @Before
     fun setUp() {
@@ -38,12 +40,12 @@ class MoviesViewModelTest {
 
     @Test
     fun getMovies() {
-        val dummyMovies = DataDummy.generateDummyMovies()
-        val movies = MutableLiveData<List<ResultsMovieItem>>()
+        val dummyMovies = Resource.success(DataDummy.generateDummyMovies())
+        val movies = MutableLiveData<Resource<List<MovieEntity>>>()
         movies.value = dummyMovies
 
         `when`(appRepository.getAllMovies()).thenReturn(movies)
-        val movieEntities = viewModel.getAllMovies().value
+        val movieEntities = viewModel.getAllMovies().value?.data
         verify(appRepository).getAllMovies()
         assertNotNull(movieEntities)
         assertEquals(10, movieEntities?.size)
