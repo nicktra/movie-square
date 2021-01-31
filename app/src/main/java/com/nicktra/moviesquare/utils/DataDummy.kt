@@ -19,12 +19,12 @@ object DataDummy {
 
         movies.add(
                 MovieEntity(
-                        464052,
-                        "Wonder Woman 1984",
-                        "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s and finds a formidable foe by the name of the Cheetah.",
-                        "${imageUrl}8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
-                        "2020-12-16",
-                        7.3,
+                        38700,
+                        "Bad Boys for Life",
+                        "Marcus and Mike are forced to confront new threats, career changes, and midlife crises as they join the newly created elite team AMMO of the Miami police department to take down the ruthless Armando Armas, the vicious leader of a Miami drug cartel.",
+                        "${imageUrl}y95lQLnuNKdPAzw9F9Ab8kJ80c3.jpg",
+                        "2020-01-15",
+                        7.2,
                         false
                 )
         )
@@ -137,6 +137,18 @@ object DataDummy {
 
         shows.add(
                 ShowEntity(
+                        1399,
+                        "Game of Thrones",
+                        "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+                        "${imageUrl}u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
+                        "2011-04-17",
+                        8.4,
+                        false
+                )
+        )
+
+        shows.add(
+                ShowEntity(
                     77169,
                         "Cobra Kai",
                         "This Karate Kid sequel series picks up 30 years after the events of the 1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt for redemption by reopening the infamous Cobra Kai karate dojo. This reignites his old rivalry with the successful Daniel LaRusso, who has been working to maintain the balance in his life without mentor Mr. Miyagi.",
@@ -234,17 +246,6 @@ object DataDummy {
                         false
                 )
         )
-        shows.add(
-                ShowEntity(
-                        1399,
-                        "Game of Thrones",
-                        "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
-                        "${imageUrl}u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
-                        "2011-04-17",
-                        8.3,
-                        false
-                )
-        )
 
         return shows
     }
@@ -255,12 +256,12 @@ object DataDummy {
 
         movies.add(
                 ResultsMovieItem(
-                        464052,
-                        "Wonder Woman 1984",
-                        "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s and finds a formidable foe by the name of the Cheetah.",
-                        "${imageUrl}8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
-                        "2020-12-16",
-                        7.3
+                        38700,
+                        "Bad Boys for Life",
+                        "Marcus and Mike are forced to confront new threats, career changes, and midlife crises as they join the newly created elite team AMMO of the Miami police department to take down the ruthless Armando Armas, the vicious leader of a Miami drug cartel.",
+                        "${imageUrl}y95lQLnuNKdPAzw9F9Ab8kJ80c3.jpg",
+                        "2020-01-15",
+                        7.2
                 )
         )
         movies.add(
@@ -363,6 +364,17 @@ object DataDummy {
 
         shows.add(
                 ResultsShowItem(
+                        1399,
+                        "Game of Thrones",
+                        "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+                        "${imageUrl}u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
+                        "2011-04-17",
+                        8.4
+                )
+        )
+
+        shows.add(
+                ResultsShowItem(
                     77169,
                         "Cobra Kai",
                         "This Karate Kid sequel series picks up 30 years after the events of the 1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt for redemption by reopening the infamous Cobra Kai karate dojo. This reignites his old rivalry with the successful Daniel LaRusso, who has been working to maintain the balance in his life without mentor Mr. Miyagi.",
@@ -451,25 +463,15 @@ object DataDummy {
                         8.7
                 )
         )
-        shows.add(
-                ResultsShowItem(
-                        1399,
-                        "Game of Thrones",
-                        "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
-                        "${imageUrl}u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
-                        "2011-04-17",
-                        8.3
-                )
-        )
 
         return shows
     }
 
     fun generateRemoteDummyMoviesDetail(kMovieId: Int): DetailMovieResponse {
-        val movieId = arrayOf(464052, 636565, 646593, 590706, 765123, 294963, 602211, 553604, 577922, 662546)
+        val movieId = arrayOf(38700, 636565, 646593, 590706, 765123, 294963, 602211, 553604, 577922, 662546)
 
         val movieTitle = arrayOf(
-                "Wonder Woman 1984",
+                "Bad Boys for Life",
                 "Rose Island",
                 "Wander",
                 "Jiu Jitsu",
@@ -482,7 +484,7 @@ object DataDummy {
         )
 
         val movieOverview = arrayOf(
-                "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s and finds a formidable foe by the name of the Cheetah.",
+                "Marcus and Mike are forced to confront new threats, career changes, and midlife crises as they join the newly created elite team AMMO of the Miami police department to take down the ruthless Armando Armas, the vicious leader of a Miami drug cartel.",
                 "In 1968, engineer Giorgio Rosa established the independent state called \"The Isle of Roses\" off the coast of Rimini, built on a platform outside the territorial waters, with Esperanto as the official language. The Italian authorities did not take it well because the micronation was seen as an expedient to not pay taxes on the revenues obtained thanks to the arrival of numerous tourists and curious people.",
                 "After getting hired to probe a suspicious death in the small town of Wander, a mentally unstable private investigator becomes convinced the case is linked to the same 'conspiracy cover up' that caused the death of his daughter.",
                 "Every six years, an ancient order of jiu-jitsu fighters joins forces to battle a vicious race of alien invaders. But when a celebrated war hero goes down in defeat, the fate of the planet and mankind hangs in the balance.",
@@ -495,7 +497,7 @@ object DataDummy {
         )
 
         val moviePosterPath = arrayOf(
-                "${imageUrl}8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
+                "${imageUrl}y95lQLnuNKdPAzw9F9Ab8kJ80c3.jpg",
                 "${imageUrl}yePO1PrRfrVMGqwJ3EzKhVvQXBX.jpg",
                 "${imageUrl}2AwPvNHphpZBJDqjZKVuMAbvS0v.jpg",
                 "${imageUrl}eLT8Cu357VOwBVTitkmlDEg32Fs.jpg",
@@ -509,7 +511,7 @@ object DataDummy {
         )
 
         val movieReleaseDate = arrayOf(
-                "2020-12-16",
+                "2020-01-15",
                 "2020-12-09",
                 "2020-12-09",
                 "2020-11-20",
@@ -521,7 +523,7 @@ object DataDummy {
                 "2020-12-04"
         )
 
-        val movieVoteAverage = doubleArrayOf(7.3, 7.2, 5.6, 5.7, 5.2, 6.8, 5.9, 7.2, 7.4, 7.2)
+        val movieVoteAverage = doubleArrayOf(7.2, 7.2, 5.6, 5.7, 5.2, 6.8, 5.9, 7.2, 7.4, 7.2)
 
 
         lateinit var movie: DetailMovieResponse
@@ -542,9 +544,10 @@ object DataDummy {
     }
 
     fun generateRemoteDummyShowsDetail(kShowId: Int): DetailShowResponse {
-        val showId = arrayOf(77169, 71712, 1416, 63174, 71789, 62286, 69050, 68507, 87739, 1399)
+        val showId = arrayOf(1399, 77169, 71712, 1416, 63174, 71789, 62286, 69050, 68507, 87739)
 
         val showName = arrayOf(
+                "Game of Thrones",
                 "Cobra Kai",
                 "The Good Doctor",
                 "Grey's Anatomy",
@@ -553,11 +556,11 @@ object DataDummy {
                 "Fear the Walking Dead",
                 "Riverdale",
                 "His Dark Materials",
-                "The Queen's Gambit",
-                "Game of Thrones"
+                "The Queen's Gambit"
         )
 
         val showOverview = arrayOf(
+                "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
                 "This Karate Kid sequel series picks up 30 years after the events of the 1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt for redemption by reopening the infamous Cobra Kai karate dojo. This reignites his old rivalry with the successful Daniel LaRusso, who has been working to maintain the balance in his life without mentor Mr. Miyagi.",
                 "A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives?",
                 "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
@@ -566,11 +569,11 @@ object DataDummy {
                 "What did the world look like as it was transforming into the horrifying apocalypse depicted in \"The Walking Dead\"? This spin-off set in Los Angeles, following new characters as they face the beginning of the end of the world, will answer that question.",
                 "Set in the present, the series offers a bold, subversive take on Archie, Betty, Veronica and their friends, exploring the surreality of small-town life, the darkness and weirdness bubbling beneath Riverdale’s wholesome facade.",
                 "Lyra is an orphan who lives in a parallel universe in which science, theology and magic are entwined. Lyra's search for a kidnapped friend uncovers a sinister plot involving stolen children, and turns into a quest to understand a mysterious phenomenon called Dust. She is later joined on her journey by Will, a boy who possesses a knife that can cut windows between worlds. As Lyra learns the truth about her parents and her prophesied destiny, the two young people are caught up in a war against celestial powers that ranges across many worlds.",
-                "In a Kentucky orphanage in the 1950s, a young girl discovers an astonishing talent for chess while struggling with addiction.",
-                "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond."
+                "In a Kentucky orphanage in the 1950s, a young girl discovers an astonishing talent for chess while struggling with addiction."
         )
 
         val showPosterPath = arrayOf(
+                "${imageUrl}u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
                 "${imageUrl}obLBdhLxheKg8Li1qO11r2SwmYO.jpg",
                 "${imageUrl}6tfT03sGp9k4c0J3dypjrI8TSAI.jpg",
                 "${imageUrl}clnyhPqj1SNgpAdeSS6a6fwE6Bo.jpg",
@@ -579,12 +582,11 @@ object DataDummy {
                 "${imageUrl}wGFUewXPeMErCe2xnCmmLEiHOGh.jpg",
                 "${imageUrl}4X7o1ssOEvp4BFLim1AZmPNcYbU.jpg",
                 "${imageUrl}g6tIKGc3f1H5QMz1dcgCwADKpZ7.jpg",
-                "${imageUrl}zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg",
-                "${imageUrl}u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg"
-
+                "${imageUrl}zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg"
         )
 
         val showFirstAirDate = arrayOf(
+                "2011-04-17",
                 "2018-05-02",
                 "2017-09-25",
                 "2005-03-27",
@@ -593,11 +595,10 @@ object DataDummy {
                 "2015-08-23",
                 "2017-01-26",
                 "2019-11-03",
-                "2020-10-23",
-                "2011-04-17"
+                "2020-10-23"
         )
 
-        val showVoteAverage = doubleArrayOf(8.1, 8.6, 8.1, 8.5, 7.8, 7.5, 8.6, 8.1, 8.7, 8.3)
+        val showVoteAverage = doubleArrayOf(8.4, 8.1, 8.6, 8.1, 8.5, 7.8, 7.5, 8.6, 8.1, 8.7)
 
 
         lateinit var show: DetailShowResponse

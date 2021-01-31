@@ -88,4 +88,28 @@ class AppRepositoryTest {
         assertNotNull(showEntities.data?.name)
         assertEquals(showResponses[0].name, showEntities.data?.name)
     }
+
+    @Test
+    fun getFavoriteMovies() {
+        val dummyMovies = MutableLiveData<List<MovieEntity>>()
+        dummyMovies.value = DataDummy.generateDummyMovies()
+        `when`(local.getFavoriteMovies()).thenReturn(dummyMovies)
+
+        val movieEntities = LiveDataTestUtil.getValue(appRepository.getFavoriteMovies())
+        verify(local).getFavoriteMovies()
+        assertNotNull(movieEntities)
+        assertEquals(movieResponses.size.toLong(), movieEntities.size.toLong())
+    }
+
+    @Test
+    fun getFavoriteShows() {
+        val dummyShows = MutableLiveData<List<ShowEntity>>()
+        dummyShows.value = DataDummy.generateDummyShows()
+        `when`(local.getFavoriteShows()).thenReturn(dummyShows)
+
+        val showEntities = LiveDataTestUtil.getValue(appRepository.getFavoriteShows())
+        verify(local).getFavoriteShows()
+        assertNotNull(showEntities)
+        assertEquals(showResponses.size.toLong(), showEntities.size.toLong())
+    }
 }

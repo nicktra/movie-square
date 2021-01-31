@@ -44,4 +44,7 @@
     <string name="title_favorite">Favorite</string>
     <string name="title_about">About</string>
     <string name="menu_bookmark">Favorite</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="info">Info</string>
 </resources>

@@ -5,12 +5,14 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.nicktra.moviesquare.R
+import com.nicktra.moviesquare.ui.MainActivity
 import com.nicktra.moviesquare.utils.DataDummy
 import com.nicktra.moviesquare.utils.EspressoIdlingResource
 import org.junit.After
@@ -54,7 +56,7 @@ class HomeActivityTest {
 
     @Before
     fun setup(){
-        ActivityScenario.launch(HomeActivity::class.java)
+        ActivityScenario.launch(MainActivity::class.java)
         IdlingRegistry.getInstance().register(EspressoIdlingResource.espressoTestIdlingResource)
     }
 
@@ -104,9 +106,42 @@ class HomeActivityTest {
     }
 
     @Test
+    fun loadFavoriteMovie() {
+        onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+        onView(withId(R.id.navigation_favorite)).perform(click())
+        onView(withId(R.id.rv_favorite_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_favorite_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.tv_data_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_data_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_data_overview)).check(matches(isDisplayed()))
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+    }
+
+    @Test
+    fun loadFavoriteShow() {
+        onView(withText("TV SHOW")).perform(click())
+        onView(withId(R.id.rv_show)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+        onView(withId(R.id.navigation_favorite)).perform(click())
+        onView(withText("TV SHOW")).perform(click())
+        onView(withId(R.id.rv_favorite_show)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_favorite_show)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.tv_data_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_data_release)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_data_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_data_overview)).check(matches(isDisplayed()))
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+    }
+
+    @Test
     fun loadAbout() {
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-        onView(withText("About")).perform(click())
+        onView(withId(R.id.navigation_about)).perform(click())
         onView(withId(R.id.rellay1)).check(matches(isDisplayed()))
     }
 }
