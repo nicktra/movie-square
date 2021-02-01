@@ -1,18 +1,13 @@
 package com.nicktra.moviesquare.ui.favorite.favoritetvshows
 
-import android.content.res.Configuration
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import com.nicktra.moviesquare.R
-import com.nicktra.moviesquare.databinding.FragmentFavoriteMoviesBinding
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicktra.moviesquare.databinding.FragmentFavoriteShowsBinding
-import com.nicktra.moviesquare.ui.favorite.favoritemovies.FavoriteMoviesAdapter
-import com.nicktra.moviesquare.ui.favorite.favoritemovies.FavoriteMoviesViewModel
 import com.nicktra.moviesquare.viewmodel.ViewModelFactory
 
 class FavoriteShowsFragment : Fragment() {
@@ -41,10 +36,7 @@ class FavoriteShowsFragment : Fragment() {
             })
 
             with(binding?.rvFavoriteShow) {
-                val orientation = this@FavoriteShowsFragment.resources.configuration.orientation
-                val spanCount = if (orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 3
-
-                this?.layoutManager = GridLayoutManager(context, spanCount)
+                this?.layoutManager = LinearLayoutManager(context)
                 this?.setHasFixedSize(true)
                 this?.adapter = showsAdapter
             }

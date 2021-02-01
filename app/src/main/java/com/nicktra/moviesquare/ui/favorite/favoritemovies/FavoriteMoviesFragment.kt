@@ -1,13 +1,12 @@
 package com.nicktra.moviesquare.ui.favorite.favoritemovies
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicktra.moviesquare.databinding.FragmentFavoriteMoviesBinding
 import com.nicktra.moviesquare.viewmodel.ViewModelFactory
 
@@ -37,10 +36,7 @@ class FavoriteMoviesFragment : Fragment() {
             })
 
             with(binding?.rvFavoriteMovie) {
-                val orientation = this@FavoriteMoviesFragment.resources.configuration.orientation
-                val spanCount = if (orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 3
-
-                this?.layoutManager = GridLayoutManager(context, spanCount)
+                this?.layoutManager = LinearLayoutManager(context)
                 this?.setHasFixedSize(true)
                 this?.adapter = moviesAdapter
             }

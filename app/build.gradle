@@ -81,6 +81,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
 
     //API Retrofit
     implementation "androidx.activity:activity-ktx:1.1.0"

@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nicktra.moviesquare.R
 import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
+import com.nicktra.moviesquare.databinding.ItemsFavoriteShowBinding
 import com.nicktra.moviesquare.databinding.ItemsShowBinding
 import com.nicktra.moviesquare.ui.detail.DetailActivity
 
@@ -21,8 +22,8 @@ class FavoriteShowsAdapter : RecyclerView.Adapter<FavoriteShowsAdapter.FavoriteS
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteShowViewHolder {
-        val itemsShowBinding = ItemsShowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FavoriteShowViewHolder(itemsShowBinding)
+        val itemsFavoriteShowBinding = ItemsFavoriteShowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FavoriteShowViewHolder(itemsFavoriteShowBinding)
     }
 
     override fun onBindViewHolder(holder: FavoriteShowViewHolder, position: Int) {
@@ -33,7 +34,7 @@ class FavoriteShowsAdapter : RecyclerView.Adapter<FavoriteShowsAdapter.FavoriteS
     override fun getItemCount(): Int = listShows.size
 
 
-    class FavoriteShowViewHolder(private val binding: ItemsShowBinding) : RecyclerView.ViewHolder(binding.root) {
+    class FavoriteShowViewHolder(private val binding: ItemsFavoriteShowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(show: ShowEntity) {
             with(binding) {
                 val year = show.firstAirDate.substring(0,4)
