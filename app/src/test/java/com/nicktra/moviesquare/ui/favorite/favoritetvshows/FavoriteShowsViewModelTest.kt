@@ -3,9 +3,9 @@ package com.nicktra.moviesquare.ui.favorite.favoritetvshows
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.nicktra.moviesquare.data.AppRepository
 import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
-import com.nicktra.moviesquare.utils.DataDummy
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -13,6 +13,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -27,7 +28,10 @@ class FavoriteShowsViewModelTest {
     private lateinit var appRepository: AppRepository
 
     @Mock
-    private lateinit var observer: Observer<List<ShowEntity>>
+    private lateinit var observer: Observer<PagedList<ShowEntity>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<ShowEntity>
 
     @Before
     fun setUp() {
@@ -36,8 +40,9 @@ class FavoriteShowsViewModelTest {
 
     @Test
     fun getFavoriteShows() {
-        val dummyFavoriteShows = DataDummy.generateDummyShows()
-        val favoriteShows = MutableLiveData<List<ShowEntity>>()
+        val dummyFavoriteShows = pagedList
+        `when`(dummyFavoriteShows.size).thenReturn(10)
+        val favoriteShows = MutableLiveData<PagedList<ShowEntity>>()
         favoriteShows.value = dummyFavoriteShows
 
         Mockito.`when`(appRepository.getFavoriteShows()).thenReturn(favoriteShows)

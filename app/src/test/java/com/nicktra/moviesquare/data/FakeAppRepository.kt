@@ -1,7 +1,8 @@
 package com.nicktra.moviesquare.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.nicktra.moviesquare.data.source.local.LocalDataSource
 import com.nicktra.moviesquare.data.source.local.entity.MovieEntity
 import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
@@ -20,12 +21,18 @@ class FakeAppRepository constructor(
         private val appExecutors: AppExecutors)
     : AppDataSource {
 
-    override fun getAllMovies(): LiveData<Resource<List<MovieEntity>>> {
-        return object : NetworkBoundResource<List<MovieEntity>, List<ResultsMovieItem>>(appExecutors) {
-            public override fun loadFromDB(): LiveData<List<MovieEntity>> =
-                    localDataSource.getAllMovies()
+    override fun getAllMovies(): LiveData<Resource<PagedList<MovieEntity>>> {
+        return object : NetworkBoundResource<PagedList<MovieEntity>, List<ResultsMovieItem>>(appExecutors) {
+            public override fun loadFromDB(): LiveData<PagedList<MovieEntity>> {
+                val config = PagedList.Config.Builder()
+                        .setEnablePlaceholders(false)
+                        .setInitialLoadSizeHint(4)
+                        .setPageSize(4)
+                        .build()
+                return LivePagedListBuilder(localDataSource.getAllMovies(), config).build()
+            }
 
-            override fun shouldFetch(data: List<MovieEntity>?): Boolean =
+            override fun shouldFetch(data: PagedList<MovieEntity>?): Boolean =
                     data == null || data.isEmpty()
 
             public override fun createCall(): LiveData<ApiResponse<List<ResultsMovieItem>>> =
@@ -50,12 +57,18 @@ class FakeAppRepository constructor(
         }.asLiveData()
     }
 
-    override fun getAllShows(): LiveData<Resource<List<ShowEntity>>> {
-        return object : NetworkBoundResource<List<ShowEntity>, List<ResultsShowItem>>(appExecutors) {
-            public override fun loadFromDB(): LiveData<List<ShowEntity>> =
-                    localDataSource.getAllShows()
+    override fun getAllShows(): LiveData<Resource<PagedList<ShowEntity>>> {
+        return object : NetworkBoundResource<PagedList<ShowEntity>, List<ResultsShowItem>>(appExecutors) {
+            public override fun loadFromDB(): LiveData<PagedList<ShowEntity>> {
+                val config = PagedList.Config.Builder()
+                        .setEnablePlaceholders(false)
+                        .setInitialLoadSizeHint(4)
+                        .setPageSize(4)
+                        .build()
+                return LivePagedListBuilder(localDataSource.getAllShows(), config).build()
+            }
 
-            override fun shouldFetch(data: List<ShowEntity>?): Boolean =
+            override fun shouldFetch(data: PagedList<ShowEntity>?): Boolean =
                     data == null || data.isEmpty()
 
             public override fun createCall(): LiveData<ApiResponse<List<ResultsShowItem>>> =
@@ -136,9 +149,21 @@ class FakeAppRepository constructor(
     override fun setShowFavorite(show: ShowEntity, state: Boolean) =
             appExecutors.diskIO().execute { localDataSource.setShowFavorite(show, state) }
 
-    override fun getFavoriteMovies(): LiveData<List<MovieEntity>> =
-            localDataSource.getFavoriteMovies()
+    override fun getFavoriteMovies(): LiveData<PagedList<MovieEntity>> {
+        val config = PagedList.Config.Builder()
+                .setEnablePlaceholders(false)
+                .setInitialLoadSizeHint(4)
+                .setPageSize(4)
+                .build()
+        return LivePagedListBuilder(localDataSource.getFavoriteMovies(), config).build()
+    }
 
-    override fun getFavoriteShows(): LiveData<List<ShowEntity>> =
-            localDataSource.getFavoriteShows()
+    override fun getFavoriteShows(): LiveData<PagedList<ShowEntity>> {
+        val config = PagedList.Config.Builder()
+                .setEnablePlaceholders(false)
+                .setInitialLoadSizeHint(4)
+                .setPageSize(4)
+                .build()
+        return LivePagedListBuilder(localDataSource.getFavoriteShows(), config).build()
+    }
 }

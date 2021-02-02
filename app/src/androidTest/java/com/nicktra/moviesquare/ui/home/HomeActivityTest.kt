@@ -3,14 +3,12 @@ package com.nicktra.moviesquare.ui.home
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.nicktra.moviesquare.R
 import com.nicktra.moviesquare.ui.MainActivity
 import com.nicktra.moviesquare.utils.DataDummy
@@ -26,7 +24,7 @@ class HomeActivityTest {
     * Memastikan rv_movie dalam keadaan tampil
     * Gulir rv_movie ke posisi data terakhir
     *
-    * 2. loadDetailMovies()
+    * 2. loadDetailMovie()
     * Memberi tindakan klik pada data pertama di rv_movie
     * Memastikan TextView untuk title tampil sesuai dengan yang diharapkan
     * Memastikan TextView untuk release tampil sesuai dengan yang diharapkan
@@ -38,7 +36,7 @@ class HomeActivityTest {
     * Memastikan rv_show dalam keadaan tampil
     * Gulir rv_show ke posisi data terakhir
     *
-    * 4. loadDetailShows()
+    * 4. loadDetailShow()
     * Klik TabLayout dengan teks TV SHOW
     * Memberi tindakan klik pada data pertama di rv_show
     * Memastikan TextView untuk title tampil sesuai dengan yang diharapkan
@@ -46,8 +44,38 @@ class HomeActivityTest {
     * Memastikan TextView untuk rating tampil sesuai dengan yang diharapkan
     * Memastikan TextView untuk overview tampil sesuai dengan yang diharapkan
     *
-    * 5. loadAbout()
-    * Klik ActionBar lalu Klik teks About
+    * 5. loadFavoriteMovie()
+    * Memberi tindakan klik pada data pertama di rv_movie
+    * Memberi tindakan klik pada tombol favorite di action_bookmark
+    * Memberi tindakan klik tombol back
+    * Klik Bottom Navigation dengan id tombol navigation_favorite
+    * Memastikan rv_favorite_movie dalam keadaan tampil
+    * Memberi tindakan klik pada data pertama di rv_favorite_movie
+    * Memastikan TextView untuk title tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk release tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk rating tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk overview tampil sesuai dengan yang diharapkan
+    * Memberi tindakan klik pada tombol favorite di action_bookmark
+    * Memberi tindakan klik tombol back
+    *
+    * 5. loadFavoriteShow()
+    * Klik TabLayout dengan teks TV SHOW
+    * Memberi tindakan klik pada data pertama di rv_show
+    * Memberi tindakan klik pada tombol favorite di action_bookmark
+    * Memberi tindakan klik tombol back
+    * Klik Bottom Navigation dengan id tombol navigation_favorite
+    * Klik TabLayout dengan teks TV SHOW
+    * Memastikan rv_favorite_show dalam keadaan tampil
+    * Memberi tindakan klik pada data pertama di rv_favorite_show
+    * Memastikan TextView untuk title tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk release tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk rating tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk overview tampil sesuai dengan yang diharapkan
+    * Memberi tindakan klik pada tombol favorite di action_bookmark
+    * Memberi tindakan klik tombol back
+    *
+    * 7. loadAbout()
+    * Klik Bottom Navigation dengan id tombol navigation_about
     * Memastikan tampilan About dengan id rellay1 dalam keadaan tampil
     * */
 

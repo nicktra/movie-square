@@ -11,7 +11,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.nicktra.moviesquare.R
 import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
 import com.nicktra.moviesquare.databinding.ItemsFavoriteShowBinding
-import com.nicktra.moviesquare.databinding.ItemsShowBinding
 import com.nicktra.moviesquare.ui.detail.DetailActivity
 
 class FavoriteShowsAdapter : PagedListAdapter<ShowEntity, FavoriteShowsAdapter.FavoriteShowViewHolder>(DIFF_CALLBACK) {

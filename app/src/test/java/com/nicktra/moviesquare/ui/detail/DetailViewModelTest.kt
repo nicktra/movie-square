@@ -6,12 +6,8 @@ import androidx.lifecycle.Observer
 import com.nicktra.moviesquare.data.AppRepository
 import com.nicktra.moviesquare.data.source.local.entity.MovieEntity
 import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
-import com.nicktra.moviesquare.data.source.remote.response.movie.DetailMovieResponse
-import com.nicktra.moviesquare.data.source.remote.response.tvshow.DetailShowResponse
 import com.nicktra.moviesquare.utils.DataDummy
 import com.nicktra.moviesquare.vo.Resource
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -55,15 +51,6 @@ class DetailViewModelTest {
         movie.value = dummyMovie
 
         `when`(appRepository.getDetailMovie(movieId)).thenReturn(movie)
-        /*val movieEntity = viewModel.getDetailMovie.value?.data
-        verify(appRepository).getDetailMovie(movieId)
-        assertNotNull(movieEntity)
-        assertEquals(dummyMovie.data?.movieId, movieEntity?.movieId)
-        assertEquals(dummyMovie.data?.title, movieEntity?.title)
-        assertEquals(dummyMovie.data?.overview, movieEntity?.overview)
-        assertEquals(dummyMovie.data?.posterPath, movieEntity?.posterPath)
-        assertEquals(dummyMovie.data?.releaseDate, movieEntity?.releaseDate)
-        assertEquals(dummyMovie.data?.voteAverage.toDouble(), movieEntity?.voteAverage.toDouble(), 0.0)*/
 
         viewModel.getDetailMovie.observeForever(movieObserver)
         verify(movieObserver).onChanged(dummyMovie)
@@ -75,15 +62,6 @@ class DetailViewModelTest {
         show.value = dummyShow
 
         `when`(appRepository.getDetailShow(showId)).thenReturn(show)
-        /*val showEntity = viewModel.getDetailShow.value?.data
-        verify(appRepository).getDetailShow(showId)
-        assertNotNull(showEntity)
-        assertEquals(dummyShow.data?.showId, showEntity?.showId)
-        assertEquals(dummyShow.data?.name, showEntity?.name)
-        assertEquals(dummyShow.data?.overview, showEntity?.overview)
-        assertEquals(dummyShow.data?.posterPath, showEntity?.posterPath)
-        assertEquals(dummyShow.data?.firstAirDate, showEntity?.firstAirDate)
-        assertEquals(dummyShow.data?.voteAverage.toDouble(), showEntity?.voteAverage.toDouble(), 0.0)*/
 
         viewModel.getDetailShow.observeForever(showObserver)
         verify(showObserver).onChanged(dummyShow)

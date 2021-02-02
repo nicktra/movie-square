@@ -3,10 +3,9 @@ package com.nicktra.moviesquare.ui.tvshows
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.nicktra.moviesquare.data.AppRepository
 import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
-import com.nicktra.moviesquare.data.source.remote.response.tvshow.ResultsShowItem
-import com.nicktra.moviesquare.utils.DataDummy
 import com.nicktra.moviesquare.vo.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -31,7 +30,10 @@ class ShowsViewModelTest {
     private lateinit var appRepository: AppRepository
 
     @Mock
-    private lateinit var observer: Observer<Resource<List<ShowEntity>>>
+    private lateinit var observer: Observer<Resource<PagedList<ShowEntity>>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<ShowEntity>
 
     @Before
     fun setUp() {
@@ -40,8 +42,9 @@ class ShowsViewModelTest {
 
     @Test
     fun getShows() {
-        val dummyShows = Resource.success(DataDummy.generateDummyShows())
-        val shows = MutableLiveData<Resource<List<ShowEntity>>>()
+        val dummyShows = Resource.success(pagedList)
+        `when`(dummyShows.data?.size).thenReturn(10)
+        val shows = MutableLiveData<Resource<PagedList<ShowEntity>>>()
         shows.value = dummyShows
 
         `when`(appRepository.getAllShows()).thenReturn(shows)

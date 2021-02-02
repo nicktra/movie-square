@@ -39,16 +39,6 @@
             app:layout_constraintTop_toBottomOf="@id/iv_item_poster"
             tools:text="A Star is Born" />
 
-        <!--<TextView
-            android:id="@+id/tv_item_release"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@id/tv_item_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_title"
-            tools:text="(2018)" />-->
-
         <TextView
             android:id="@+id/tv_item_rating"
             android:layout_width="wrap_content"

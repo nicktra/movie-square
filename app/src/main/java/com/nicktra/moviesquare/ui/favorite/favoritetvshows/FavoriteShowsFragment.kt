@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.nicktra.moviesquare.R
 import com.nicktra.moviesquare.databinding.FragmentFavoriteShowsBinding
-import com.nicktra.moviesquare.ui.favorite.favoritemovies.FavoriteMoviesAdapter
-import com.nicktra.moviesquare.ui.favorite.favoritemovies.FavoriteMoviesViewModel
 import com.nicktra.moviesquare.viewmodel.ViewModelFactory
 
 class FavoriteShowsFragment : Fragment() {

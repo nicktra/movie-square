@@ -1,7 +1,6 @@
 package com.nicktra.moviesquare.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.nicktra.moviesquare.data.source.local.LocalDataSource
