@@ -3,6 +3,8 @@ package com.nicktra.moviesquare.ui.favorite.favoritemovies
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -12,13 +14,17 @@ import com.nicktra.moviesquare.databinding.ItemsFavoriteMovieBinding
 import com.nicktra.moviesquare.databinding.ItemsMovieBinding
 import com.nicktra.moviesquare.ui.detail.DetailActivity
 
-class FavoriteMoviesAdapter : RecyclerView.Adapter<FavoriteMoviesAdapter.FavoriteMovieViewHolder>() {
-    private var listMovies = ArrayList<MovieEntity>()
+class FavoriteMoviesAdapter : PagedListAdapter<MovieEntity, FavoriteMoviesAdapter.FavoriteMovieViewHolder>(DIFF_CALLBACK) {
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MovieEntity>() {
+            override fun areItemsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem.movieId == newItem.movieId
+            }
 
-    fun setMovies(movies: List<MovieEntity>?) {
-        if (movies.isNullOrEmpty()) return
-        this.listMovies.clear()
-        this.listMovies.addAll(movies)
+            override fun areContentsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteMovieViewHolder {
@@ -27,14 +33,15 @@ class FavoriteMoviesAdapter : RecyclerView.Adapter<FavoriteMoviesAdapter.Favorit
     }
 
     override fun onBindViewHolder(holder: FavoriteMovieViewHolder, position: Int) {
-        val movie = listMovies[position]
-        holder.bind(movie)
+        val movie = getItem(position)
+        if (movie != null) {
+            holder.bind(movie)
+        }
     }
 
-    override fun getItemCount(): Int = listMovies.size
+    fun getSwipedData(swipedPosition: Int): MovieEntity? = getItem(swipedPosition)
 
-
-    class FavoriteMovieViewHolder(private val binding: ItemsFavoriteMovieBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class FavoriteMovieViewHolder(private val binding: ItemsFavoriteMovieBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieEntity) {
             with(binding) {
                 val year = movie.releaseDate.substring(0,4)

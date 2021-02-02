@@ -3,6 +3,8 @@ package com.nicktra.moviesquare.ui.favorite.favoritetvshows
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -12,13 +14,17 @@ import com.nicktra.moviesquare.databinding.ItemsFavoriteShowBinding
 import com.nicktra.moviesquare.databinding.ItemsShowBinding
 import com.nicktra.moviesquare.ui.detail.DetailActivity
 
-class FavoriteShowsAdapter : RecyclerView.Adapter<FavoriteShowsAdapter.FavoriteShowViewHolder>() {
-    private var listShows = ArrayList<ShowEntity>()
+class FavoriteShowsAdapter : PagedListAdapter<ShowEntity, FavoriteShowsAdapter.FavoriteShowViewHolder>(DIFF_CALLBACK) {
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ShowEntity>() {
+            override fun areItemsTheSame(oldItem: ShowEntity, newItem: ShowEntity): Boolean {
+                return oldItem.showId == newItem.showId
+            }
 
-    fun setShows(shows: List<ShowEntity>?) {
-        if (shows.isNullOrEmpty()) return
-        this.listShows.clear()
-        this.listShows.addAll(shows)
+            override fun areContentsTheSame(oldItem: ShowEntity, newItem: ShowEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteShowViewHolder {
@@ -27,14 +33,15 @@ class FavoriteShowsAdapter : RecyclerView.Adapter<FavoriteShowsAdapter.FavoriteS
     }
 
     override fun onBindViewHolder(holder: FavoriteShowViewHolder, position: Int) {
-        val show = listShows[position]
-        holder.bind(show)
+        val show = getItem(position)
+        if (show != null) {
+            holder.bind(show)
+        }
     }
 
-    override fun getItemCount(): Int = listShows.size
+    fun getSwipedData(swipedPosition: Int): ShowEntity? = getItem(swipedPosition)
 
-
-    class FavoriteShowViewHolder(private val binding: ItemsFavoriteShowBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class FavoriteShowViewHolder(private val binding: ItemsFavoriteShowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(show: ShowEntity) {
             with(binding) {
                 val year = show.firstAirDate.substring(0,4)

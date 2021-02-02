@@ -38,8 +38,7 @@ class ShowsFragment : Fragment() {
                         Status.LOADING -> showLoading(true)
                         Status.SUCCESS -> {
                             showLoading(false)
-                            showsAdapter.setShows(shows.data)
-                            showsAdapter.notifyDataSetChanged()
+                            showsAdapter.submitList(shows.data)
                         }
                         Status.ERROR -> {
                             showLoading(false)

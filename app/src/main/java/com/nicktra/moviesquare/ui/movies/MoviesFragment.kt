@@ -38,8 +38,7 @@ class MoviesFragment : Fragment() {
                         Status.LOADING -> showLoading(true)
                         Status.SUCCESS -> {
                             showLoading(false)
-                            moviesAdapter.setMovies(movies.data)
-                            moviesAdapter.notifyDataSetChanged()
+                            moviesAdapter.submitList(movies.data)
                         }
                         Status.ERROR -> {
                             showLoading(false)

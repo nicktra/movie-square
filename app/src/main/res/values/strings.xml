@@ -47,4 +47,6 @@
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
     <string name="info">Info</string>
+    <string name="message_undo">Cancel to delete the previous item?</string>
+    <string name="message_ok">OK</string>
 </resources>

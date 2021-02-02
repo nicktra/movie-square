@@ -1,6 +1,7 @@
 package com.nicktra.moviesquare.data.source.local.room
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 import com.nicktra.moviesquare.data.source.local.entity.MovieEntity
 import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
@@ -9,7 +10,7 @@ import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
 interface CatalogueDao {
     // Movie
     @Query("SELECT * FROM movieentities")
-    fun getMovies(): LiveData<List<MovieEntity>>
+    fun getMovies(): DataSource.Factory<Int, MovieEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovies(movies: List<MovieEntity>)
@@ -21,11 +22,11 @@ interface CatalogueDao {
     fun updateMovie(movie: MovieEntity)
 
     @Query("SELECT * FROM movieentities where isFavorite = 1")
-    fun getFavoriteMovies(): LiveData<List<MovieEntity>>
+    fun getFavoriteMovies(): DataSource.Factory<Int, MovieEntity>
 
     // Show
     @Query("SELECT * FROM showentities")
-    fun getShows(): LiveData<List<ShowEntity>>
+    fun getShows(): DataSource.Factory<Int, ShowEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertShows(shows: List<ShowEntity>)
@@ -37,5 +38,5 @@ interface CatalogueDao {
     fun updateShow(show: ShowEntity)
 
     @Query("SELECT * FROM showentities where isFavorite = 1")
-    fun getFavoriteShows(): LiveData<List<ShowEntity>>
+    fun getFavoriteShows(): DataSource.Factory<Int, ShowEntity>
 }

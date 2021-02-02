@@ -1,6 +1,7 @@
 package com.nicktra.moviesquare.data.source.local
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import com.nicktra.moviesquare.data.source.local.entity.MovieEntity
 import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
 import com.nicktra.moviesquare.data.source.local.room.CatalogueDao
@@ -15,7 +16,7 @@ class LocalDataSource private constructor(private val mCatalogueDao: CatalogueDa
     }
 
     // Movie
-    fun getAllMovies(): LiveData<List<MovieEntity>> = mCatalogueDao.getMovies()
+    fun getAllMovies(): DataSource.Factory<Int, MovieEntity> = mCatalogueDao.getMovies()
 
     fun insertMovies(movies: List<MovieEntity>) = mCatalogueDao.insertMovies(movies)
 
@@ -23,7 +24,7 @@ class LocalDataSource private constructor(private val mCatalogueDao: CatalogueDa
 
     fun updateMovieById(movie: MovieEntity) = mCatalogueDao.updateMovie(movie)
 
-    fun getFavoriteMovies(): LiveData<List<MovieEntity>> = mCatalogueDao.getFavoriteMovies()
+    fun getFavoriteMovies(): DataSource.Factory<Int, MovieEntity> = mCatalogueDao.getFavoriteMovies()
 
     fun setMovieFavorite(movie: MovieEntity, newState: Boolean) {
         movie.isFavorite = newState
@@ -31,7 +32,7 @@ class LocalDataSource private constructor(private val mCatalogueDao: CatalogueDa
     }
 
     // Show
-    fun getAllShows(): LiveData<List<ShowEntity>> = mCatalogueDao.getShows()
+    fun getAllShows(): DataSource.Factory<Int, ShowEntity> = mCatalogueDao.getShows()
 
     fun insertShows(shows: List<ShowEntity>) = mCatalogueDao.insertShows(shows)
 
@@ -39,7 +40,7 @@ class LocalDataSource private constructor(private val mCatalogueDao: CatalogueDa
 
     fun updateShowById(show: ShowEntity) = mCatalogueDao.updateShow(show)
 
-    fun getFavoriteShows(): LiveData<List<ShowEntity>> = mCatalogueDao.getFavoriteShows()
+    fun getFavoriteShows(): DataSource.Factory<Int, ShowEntity> = mCatalogueDao.getFavoriteShows()
 
     fun setShowFavorite(show: ShowEntity, newState: Boolean) {
         show.isFavorite = newState

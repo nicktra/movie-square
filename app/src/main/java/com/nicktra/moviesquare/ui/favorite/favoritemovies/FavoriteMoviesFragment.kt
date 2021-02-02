@@ -6,13 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import com.nicktra.moviesquare.R
 import com.nicktra.moviesquare.databinding.FragmentFavoriteMoviesBinding
 import com.nicktra.moviesquare.viewmodel.ViewModelFactory
 
 class FavoriteMoviesFragment : Fragment() {
     private var _fragmentFavoriteMoviesBinding: FragmentFavoriteMoviesBinding? = null
     private val binding get() = _fragmentFavoriteMoviesBinding
+
+    private lateinit var viewModel: FavoriteMoviesViewModel
+    private lateinit var adapter: FavoriteMoviesAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -22,23 +29,23 @@ class FavoriteMoviesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        itemTouchHelper.attachToRecyclerView(binding?.rvFavoriteMovie)
 
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
-            val viewModel = ViewModelProvider(this, factory)[FavoriteMoviesViewModel::class.java]
+            viewModel = ViewModelProvider(this, factory)[FavoriteMoviesViewModel::class.java]
 
-            val moviesAdapter = FavoriteMoviesAdapter()
+            adapter = FavoriteMoviesAdapter()
             showLoading(true)
             viewModel.getFavoriteMovies().observe(viewLifecycleOwner, { movies ->
                 showLoading(false)
-                moviesAdapter.setMovies(movies)
-                moviesAdapter.notifyDataSetChanged()
+                adapter.submitList(movies)
             })
 
             with(binding?.rvFavoriteMovie) {
                 this?.layoutManager = LinearLayoutManager(context)
                 this?.setHasFixedSize(true)
-                this?.adapter = moviesAdapter
+                this?.adapter = adapter
             }
         }
     }
@@ -48,6 +55,36 @@ class FavoriteMoviesFragment : Fragment() {
             binding?.progressBar?.visibility = View.VISIBLE
         } else {
             binding?.progressBar?.visibility = View.GONE
+        }
+    }
+
+    private val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
+        override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int =
+                makeMovementFlags(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+
+        override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean = true
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            if (view != null) {
+                val swipedPosition = viewHolder.adapterPosition
+                val movieEntity = adapter.getSwipedData(swipedPosition)
+                movieEntity?.let { viewModel.setFavoriteMovies(it) }
+
+                val snackbar = Snackbar.make(view as View, R.string.message_undo, Snackbar.LENGTH_LONG)
+                snackbar.setAction(R.string.message_ok) { v ->
+                    movieEntity?.let { viewModel.setFavoriteMovies(it) }
+                }
+                snackbar.show()
+            }
+        }
+    })
+
+    override fun onResume() {
+        super.onResume()
+        if (view != null) {
+            viewModel.getFavoriteMovies().observe(viewLifecycleOwner, { movies ->
+                adapter.submitList(movies)
+            })
         }
     }
 }
