@@ -48,6 +48,7 @@ class FakeAppRepository constructor(
                             response.posterPath,
                             response.releaseDate,
                             response.voteAverage,
+                            response.popularity,
                             false)
                     movieList.add(movie)
                 }
@@ -84,6 +85,7 @@ class FakeAppRepository constructor(
                             response.posterPath,
                             response.firstAirDate,
                             response.voteAverage,
+                            response.popularity,
                             false)
                     showList.add(show)
                 }
@@ -112,6 +114,7 @@ class FakeAppRepository constructor(
                         data.posterPath,
                         data.releaseDate,
                         data.voteAverage,
+                        data.popularity,
                         false)
                 localDataSource.updateMovieById(movie)
             }
@@ -137,6 +140,7 @@ class FakeAppRepository constructor(
                         data.posterPath,
                         data.firstAirDate,
                         data.voteAverage,
+                        data.popularity,
                         false)
                 localDataSource.updateShowById(show)
             }

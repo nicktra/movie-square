@@ -9,7 +9,7 @@ import com.nicktra.moviesquare.data.source.local.entity.ShowEntity
 @Dao
 interface CatalogueDao {
     // Movie
-    @Query("SELECT * FROM movieentities")
+    @Query("SELECT * FROM movieentities ORDER BY popularity DESC")
     fun getMovies(): DataSource.Factory<Int, MovieEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -25,7 +25,7 @@ interface CatalogueDao {
     fun getFavoriteMovies(): DataSource.Factory<Int, MovieEntity>
 
     // Show
-    @Query("SELECT * FROM showentities")
+    @Query("SELECT * FROM showentities ORDER BY popularity DESC")
     fun getShows(): DataSource.Factory<Int, ShowEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -41,7 +41,7 @@ class FavoriteShowsViewModelTest {
     @Test
     fun getFavoriteShows() {
         val dummyFavoriteShows = pagedList
-        `when`(dummyFavoriteShows.size).thenReturn(10)
+        `when`(dummyFavoriteShows.size).thenReturn(5)
         val favoriteShows = MutableLiveData<PagedList<ShowEntity>>()
         favoriteShows.value = dummyFavoriteShows
 
@@ -49,7 +49,7 @@ class FavoriteShowsViewModelTest {
         val showEntities = viewModel.getFavoriteShows().value
         Mockito.verify(appRepository).getFavoriteShows()
         Assert.assertNotNull(showEntities)
-        Assert.assertEquals(10, showEntities?.size)
+        Assert.assertEquals(5, showEntities?.size)
 
         viewModel.getFavoriteShows().observeForever(observer)
         Mockito.verify(observer).onChanged(dummyFavoriteShows)

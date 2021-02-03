@@ -43,7 +43,7 @@ class ShowsViewModelTest {
     @Test
     fun getShows() {
         val dummyShows = Resource.success(pagedList)
-        `when`(dummyShows.data?.size).thenReturn(10)
+        `when`(dummyShows.data?.size).thenReturn(5)
         val shows = MutableLiveData<Resource<PagedList<ShowEntity>>>()
         shows.value = dummyShows
 
@@ -51,7 +51,7 @@ class ShowsViewModelTest {
         val showEntities = viewModel.getAllShows().value?.data
         verify(appRepository).getAllShows()
         assertNotNull(showEntities)
-        assertEquals(10, showEntities?.size)
+        assertEquals(5, showEntities?.size)
 
         viewModel.getAllShows().observeForever(observer)
         verify(observer).onChanged(dummyShows)

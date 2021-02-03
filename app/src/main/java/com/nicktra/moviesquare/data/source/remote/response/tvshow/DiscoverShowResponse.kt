@@ -36,6 +36,9 @@ data class ResultsShowItem(
 		@field:SerializedName("vote_average")
 		val voteAverage: Double,
 
+		@field:SerializedName("popularity")
+		val popularity: Double,
+
 	/*@field:SerializedName("original_language")
 	val originalLanguage: String,
 
@@ -50,9 +53,6 @@ data class ResultsShowItem(
 
 	@field:SerializedName("original_name")
 	val originalName: String,
-
-	@field:SerializedName("popularity")
-	val popularity: Double,
 
 	@field:SerializedName("vote_count")
 	val voteCount: Int*/

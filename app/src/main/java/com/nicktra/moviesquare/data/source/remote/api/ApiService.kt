@@ -9,7 +9,7 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("discover/movie")
+    @GET("discover/movie?sort_by=popularity.desc")
     fun getAllMovies(@Query("api_key") apiKey: String): Call<DiscoverMovieResponse>
 
     @GET("movie/{movieId}")
@@ -18,7 +18,7 @@ interface ApiService {
             @Query("api_key") apiKey: String
     ): Call<DetailMovieResponse>
 
-    @GET("discover/tv")
+    @GET("discover/tv?sort_by=popularity.desc")
     fun getAllShows(@Query("api_key") apiKey: String): Call<DiscoverShowResponse>
 
     @GET("tv/{showId}")

@@ -36,6 +36,9 @@ data class ResultsMovieItem(
 		@field:SerializedName("vote_average")
 		val voteAverage: Double,
 
+		@field:SerializedName("popularity")
+		val popularity: Double,
+
 	/*@field:SerializedName("original_language")
 	val originalLanguage: String,
 
@@ -50,9 +53,6 @@ data class ResultsMovieItem(
 
 	@field:SerializedName("backdrop_path")
 	val backdropPath: String,
-
-	@field:SerializedName("popularity")
-	val popularity: Double,
 
 	@field:SerializedName("adult")
 	val adult: Boolean,

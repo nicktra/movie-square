@@ -57,6 +57,7 @@ class AppRepository private constructor(
                             response.posterPath,
                             response.releaseDate,
                             response.voteAverage,
+                            response.popularity,
                     false)
                     movieList.add(movie)
                 }
@@ -93,6 +94,7 @@ class AppRepository private constructor(
                             response.posterPath,
                             response.firstAirDate,
                             response.voteAverage,
+                            response.popularity,
                             false)
                     showList.add(show)
                 }
@@ -121,6 +123,7 @@ class AppRepository private constructor(
                         data.posterPath,
                         data.releaseDate,
                         data.voteAverage,
+                        data.popularity,
                         false)
                 localDataSource.updateMovieById(movie)
             }
@@ -146,6 +149,7 @@ class AppRepository private constructor(
                         data.posterPath,
                         data.firstAirDate,
                         data.voteAverage,
+                        data.popularity,
                         false)
                 localDataSource.updateShowById(show)
             }

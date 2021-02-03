@@ -26,6 +26,9 @@ data class DetailShowResponse(
 		@field:SerializedName("vote_average")
 		val voteAverage: Double,
 
+		@field:SerializedName("popularity")
+		val popularity: Double,
+
 	/*@field:SerializedName("original_language")
 	val originalLanguage: String,
 
@@ -43,9 +46,6 @@ data class DetailShowResponse(
 
 	@field:SerializedName("genres")
 	val genres: List<ShowGenresItem>,
-
-	@field:SerializedName("popularity")
-	val popularity: Double,
 
 	@field:SerializedName("production_countries")
 	val productionCountries: List<ShowProductionCountriesItem>,
