@@ -17,8 +17,8 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
+import org.mockito.Mockito.*
+
 
 class AppRepositoryTest {
 
@@ -109,4 +109,31 @@ class AppRepositoryTest {
         assertNotNull(showEntities)
         assertEquals(showResponses.size.toLong(), showEntities.data?.size?.toLong())
     }
+
+    //Using doAnswer() for void method
+    @Test
+    fun getDetailMovieDoAnswer() {
+        doAnswer { invocation ->
+            val arg0: Any = invocation.arguments[0]
+
+            assertEquals(movieId, arg0)
+            null
+        }.`when`(local).getMovieById(anyInt())
+        local.getMovieById(movieId)
+        verify(local, times(1)).getMovieById(movieId)
+    }
+
+    //Using doAnswer() for void method
+    @Test
+    fun getDetailShowDoAnswer() {
+        doAnswer { invocation ->
+            val arg0: Any = invocation.arguments[0]
+
+            assertEquals(showId, arg0)
+            null
+        }.`when`(local).getShowById(anyInt())
+        local.getShowById(showId)
+        verify(local, times(1)).getShowById(showId)
+    }
+
 }

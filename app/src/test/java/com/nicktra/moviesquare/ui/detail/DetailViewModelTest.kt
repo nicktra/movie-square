@@ -13,9 +13,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
+
 
 @RunWith(MockitoJUnitRunner::class)
 class DetailViewModelTest {
@@ -25,6 +25,9 @@ class DetailViewModelTest {
     private val dummyShow = Resource.success(DataDummy.generateDummyShows()[0])
     private val movieId = dummyMovie.data?.movieId as Int
     private val showId = dummyShow.data?.showId as Int
+
+    private val movieNullId = 20
+    private val showNullId = 20
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -67,4 +70,13 @@ class DetailViewModelTest {
         verify(showObserver).onChanged(dummyShow)
     }
 
+    @Test(expected = Exception::class)
+    fun givenNullMovie_addThrows() {
+        doThrow().`when`(appRepository.getDetailMovie(movieNullId))
+    }
+
+    @Test(expected = Exception::class)
+    fun givenNullShow_addThrows() {
+        doThrow().`when`(appRepository.getDetailShow(showNullId))
+    }
 }

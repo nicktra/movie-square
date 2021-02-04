@@ -51,10 +51,10 @@ class HomeActivityTest {
     * Klik Bottom Navigation dengan id tombol navigation_favorite
     * Memastikan rv_favorite_movie dalam keadaan tampil
     * Memberi tindakan klik pada data pertama di rv_favorite_movie
-    * Memastikan TextView untuk title tampil sesuai dengan yang diharapkan
-    * Memastikan TextView untuk release tampil sesuai dengan yang diharapkan
-    * Memastikan TextView untuk rating tampil sesuai dengan yang diharapkan
-    * Memastikan TextView untuk overview tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk title tampil
+    * Memastikan TextView untuk release tampil
+    * Memastikan TextView untuk rating tampil
+    * Memastikan TextView untuk overview tampil
     * Memberi tindakan klik pada tombol favorite di action_bookmark
     * Memberi tindakan klik tombol back
     *
@@ -67,10 +67,10 @@ class HomeActivityTest {
     * Klik TabLayout dengan teks TV SHOW
     * Memastikan rv_favorite_show dalam keadaan tampil
     * Memberi tindakan klik pada data pertama di rv_favorite_show
-    * Memastikan TextView untuk title tampil sesuai dengan yang diharapkan
-    * Memastikan TextView untuk release tampil sesuai dengan yang diharapkan
-    * Memastikan TextView untuk rating tampil sesuai dengan yang diharapkan
-    * Memastikan TextView untuk overview tampil sesuai dengan yang diharapkan
+    * Memastikan TextView untuk title tampil
+    * Memastikan TextView untuk release tampil
+    * Memastikan TextView untuk rating tampil
+    * Memastikan TextView untuk overview tampil
     * Memberi tindakan klik pada tombol favorite di action_bookmark
     * Memberi tindakan klik tombol back
     *
