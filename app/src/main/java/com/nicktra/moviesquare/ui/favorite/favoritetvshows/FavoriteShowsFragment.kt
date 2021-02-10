@@ -71,7 +71,7 @@ class FavoriteShowsFragment : Fragment() {
                 showEntity?.let { viewModel.setFavoriteShows(it) }
 
                 val snackbar = Snackbar.make(view as View, R.string.message_undo, Snackbar.LENGTH_LONG)
-                snackbar.setAction(R.string.message_ok) { v ->
+                snackbar.setAction(R.string.message_ok) { _ ->
                     showEntity?.let { viewModel.setFavoriteShows(it) }
                 }
                 snackbar.show()
