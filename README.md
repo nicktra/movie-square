@@ -12,7 +12,7 @@
   </p>
 </p>
 
-# GithubX
+# Movie Square
 
 Movie Square is android app about Movies and TV Shows.
 
