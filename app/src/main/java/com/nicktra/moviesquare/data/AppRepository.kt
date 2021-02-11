@@ -156,11 +156,11 @@ class AppRepository private constructor(
         }.asLiveData()
     }
 
-    override fun setMovieFavorite(movie: MovieEntity, state: Boolean) =
-            appExecutors.diskIO().execute { localDataSource.setMovieFavorite(movie, state) }
+    override fun setMovieFavorite(movie: MovieEntity, isFavorite: Boolean) =
+            appExecutors.diskIO().execute { localDataSource.setMovieFavorite(movie, isFavorite) }
 
-    override fun setShowFavorite(show: ShowEntity, state: Boolean) =
-            appExecutors.diskIO().execute { localDataSource.setShowFavorite(show, state) }
+    override fun setShowFavorite(show: ShowEntity, isFavorite: Boolean) =
+            appExecutors.diskIO().execute { localDataSource.setShowFavorite(show, isFavorite) }
 
     override fun getFavoriteMovies(): LiveData<PagedList<MovieEntity>> {
         val config = PagedList.Config.Builder()

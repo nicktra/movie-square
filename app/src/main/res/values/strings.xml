@@ -49,4 +49,5 @@
     <string name="info">Info</string>
     <string name="message_undo">Cancel to delete the previous item?</string>
     <string name="message_ok">OK</string>
+    <string name="no_favorite">You don\'t have favorite</string>
 </resources>

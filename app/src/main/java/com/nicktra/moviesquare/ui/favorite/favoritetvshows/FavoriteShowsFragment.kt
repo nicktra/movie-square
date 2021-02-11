@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -39,6 +40,16 @@ class FavoriteShowsFragment : Fragment() {
             showLoading(true)
             viewModel.getFavoriteShows().observe(viewLifecycleOwner, { shows ->
                 showLoading(false)
+                if (shows.isEmpty()) {
+                    binding?.tvNoFavorite?.isVisible  = true
+                    binding?.ivItemFavorite?.isVisible  = true
+                    binding?.rvFavoriteShow?.isVisible = false
+                }
+                else {
+                    binding?.tvNoFavorite?.isVisible = false
+                    binding?.ivItemFavorite?.isVisible  = false
+                    binding?.rvFavoriteShow?.isVisible = true
+                }
                 adapter.submitList(shows)
             })
 
